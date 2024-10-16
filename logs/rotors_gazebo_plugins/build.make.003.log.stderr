@@ -1,0 +1,6 @@
+[01m[Kc++:[m[K [01;31m[Kfatal error: [m[KKilled signal terminated program cc1plus
+compilation terminated.
+make[2]: *** [CMakeFiles/gazebo_geotagged_images_plugin.dir/build.make:63: CMakeFiles/gazebo_geotagged_images_plugin.dir/src/external/gazebo_geotagged_images_plugin.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:4484: CMakeFiles/gazebo_geotagged_images_plugin.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:130: all] Error 2

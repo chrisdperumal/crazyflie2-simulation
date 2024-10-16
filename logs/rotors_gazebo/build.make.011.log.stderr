@@ -1,0 +1,8 @@
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_gazebo/src/nodes/lqr_feedforward_controller.cpp:4:10:[m[K [01;31m[Kfatal error: [m[KH5Cpp.h: No such file or directory
+    4 | #include [01;31m[K<H5Cpp.h>[m[K  // HDF5 C++ API
+      |          [01;31m[K^~~~~~~~~[m[K
+compilation terminated.
+make[2]: *** [CMakeFiles/lqr_feedforward_controller.dir/build.make:63: CMakeFiles/lqr_feedforward_controller.dir/src/nodes/lqr_feedforward_controller.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:209: CMakeFiles/lqr_feedforward_controller.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:130: all] Error 2

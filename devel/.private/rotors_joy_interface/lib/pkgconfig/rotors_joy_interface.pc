@@ -1,0 +1,8 @@
+prefix=/home/chris/catkin_ws/devel/.private/rotors_joy_interface
+
+Name: rotors_joy_interface
+Description: Description of rotors_joy_interface
+Version: 7.0.1
+Cflags: -I/home/chris/catkin_ws/src/CrazyS/rotors_joy_interface/include
+Libs: -L${prefix}/lib 
+Requires: roscpp geometry_msgs mav_msgs sensor_msgs trajectory_msgs

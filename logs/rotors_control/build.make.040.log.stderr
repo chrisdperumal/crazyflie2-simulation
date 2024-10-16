@@ -1,0 +1,44 @@
+In file included from [01m[K/opt/ros/noetic/include/ros/assert.h:35[m[K,
+                 from [01m[K/opt/ros/noetic/include/ros/common.h:36[m[K,
+                 from [01m[K/opt/ros/noetic/include/ros/callback_queue_interface.h:39[m[K,
+                 from [01m[K/opt/ros/noetic/include/ros/callback_queue.h:38[m[K,
+                 from [01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.h:15[m[K,
+                 from [01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:2[m[K:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:[m[K In member function ‘[01m[Kvoid rotors_control::LQRControllerNode::MultiDofJointTrajectoryCallback(const MultiDOFJointTrajectoryConstPtr&)[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:87:57:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[Kangular_velocity_B[m[K’; did you mean ‘[01m[Kangular_velocity_W[m[K’?
+   87 |             << "Angular Velocity: [" << eigen_reference.[01;31m[Kangular_velocity_B[m[K.transpose() << "]");
+      |                                                         [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:361:64:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KROSCONSOLE_PRINT_STREAM_AT_LOCATION_WITH_FILTER[m[K’
+  361 |     __rosconsole_print_stream_at_location_with_filter__ss__ << [01;36m[Kargs[m[K; \
+      |                                                                [01;36m[K^~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:409:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROSCONSOLE_PRINT_STREAM_AT_LOCATION[m[K’
+  409 |       [01;36m[KROSCONSOLE_PRINT_STREAM_AT_LOCATION[m[K(args); \
+      |       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:582:43:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_STREAM_COND[m[K’
+  582 | #define ROS_LOG_STREAM(level, name, args) [01;36m[KROS_LOG_STREAM_COND[m[K(true, level, name, args)
+      |                                           [01;36m[K^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/rosconsole/macros_generated.h:111:31:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_STREAM[m[K’
+  111 | #define ROS_INFO_STREAM(args) [01;36m[KROS_LOG_STREAM[m[K(::ros::console::levels::Info, ROSCONSOLE_DEFAULT_NAME, args)
+      |                               [01;36m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:80:5:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_INFO_STREAM[m[K’
+   80 |     [01;36m[KROS_INFO_STREAM[m[K("Eigen Reference: \n"
+      |     [01;36m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:89:35:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[K<<[m[K’ token
+   89 |     Eigen::VectorXd desired_state [01;31m[K<<[m[K eigen_reference.velocity_W[0], eigen_reference.position_W[0],
+      |                                   [01;31m[K^~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:96:5:[m[K [01;31m[Kerror: [m[K‘[01m[KlqrControllerNode[m[K’ was not declared in this scope; did you mean ‘[01m[KLQRControllerNode[m[K’?
+   96 |     [01;31m[KlqrControllerNode[m[K.setDesiredState(desired_state);
+      |     [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+      |     [32m[KLQRControllerNode[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:96:39:[m[K [01;31m[Kerror: [m[K‘[01m[Kdesired_state[m[K’ was not declared in this scope; did you mean ‘[01m[Kdesired_state_[m[K’?
+   96 |     lqrControllerNode.setDesiredState([01;31m[Kdesired_state[m[K);
+      |                                       [01;31m[K^~~~~~~~~~~~~[m[K
+      |                                       [32m[Kdesired_state_[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:[m[K In member function ‘[01m[Kvoid rotors_control::LQRControllerNode::OdometryCallback(const OdometryConstPtr&)[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:232:5:[m[K [01;31m[Kerror: [m[K‘[01m[Klqr_controller_node[m[K’ was not declared in this scope; did you mean ‘[01m[KLQRControllerNode[m[K’?
+  232 |     [01;31m[Klqr_controller_node[m[K.setCurrentState(current_state_);
+      |     [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+      |     [32m[KLQRControllerNode[m[K
+make[2]: *** [CMakeFiles/lqr_feedforward_controller_node.dir/build.make:63: CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1845: CMakeFiles/lqr_feedforward_controller_node.dir/all] Error 2
+make: *** [Makefile:130: all] Error 2

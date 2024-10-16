@@ -1,0 +1,151 @@
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target trajectory_msgs_generate_messages_lisp
+[  0%] Built target trajectory_msgs_generate_messages_nodejs
+[  0%] Built target nav_msgs_generate_messages_eus
+[  0%] Built target mav_msgs_generate_messages_py
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target mav_msgs_generate_messages_nodejs
+[  0%] Built target mav_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target nav_msgs_generate_messages_lisp
+[  0%] Built target nav_msgs_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target nav_msgs_generate_messages_py
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target actionlib_msgs_generate_messages_eus
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target trajectory_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target actionlib_msgs_generate_messages_lisp
+[  0%] Built target actionlib_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target actionlib_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target mav_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+[  0%] Built target mav_msgs_generate_messages_cpp
+[  0%] Built target actionlib_msgs_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_eus
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target trajectory_msgs_generate_messages_eus
+[  0%] Built target roscpp_generate_messages_nodejs
+[  0%] Built target trajectory_msgs_generate_messages_py
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target nav_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  7%] Built target position_controller_v2
+[ 15%] Built target attitude_controller_v2
+[ 23%] Built target sensfusion6
+[ 30%] Built target attitude_controller
+[ 38%] Built target lqr_feedforward_controller
+[ 46%] Built target position_controller
+[ 53%] Built target crazyflie_onboard_controller
+[ 61%] Built target crazyflie_complementary_filter
+[ 69%] Built target attitude_controller_node
+[35m[1mScanning dependencies of target attitude_controller_node_v2[0m
+[35m[1mScanning dependencies of target lqr_feedforward_controller_node[0m
+[ 76%] Built target position_controller_node_v2
+[ 80%] [32mBuilding CXX object CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o[0m
+[ 88%] Built target position_controller_node
+[ 92%] [32mBuilding CXX object CMakeFiles/attitude_controller_node_v2.dir/src/nodes/attitude_controller_node_v2.cpp.o[0m
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:35:1:[m[K [01;31m[Kerror: [m[K‘[01m[KAttitudeControllerNode[m[K’ does not name a type; did you mean ‘[01m[KAttitudeController[m[K’?
+   35 | [01;31m[KAttitudeControllerNode[m[K::AttitudeControllerNode() {
+      | [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+      | [32m[KAttitudeController[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:62:6:[m[K [01;31m[Kerror: [m[K‘[01m[KAttitudeControllerNode[m[K’ has not been declared
+   62 | void [01;31m[KAttitudeControllerNode[m[K::MultiDofJointTrajectoryCallback(const trajectory_msgs::MultiDOFJointTrajectoryConstPtr& msg) {
+      |      [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:[m[K In function ‘[01m[Kvoid rotors_control::MultiDofJointTrajectoryCallback(const MultiDOFJointTrajectoryConstPtr&)[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:66:4:[m[K [01;31m[Kerror: [m[K‘[01m[Kcommands_[m[K’ was not declared in this scope
+   66 |    [01;31m[Kcommands_[m[K.clear();
+      |    [01;31m[K^~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:67:4:[m[K [01;31m[Kerror: [m[K‘[01m[Kcommand_waiting_times_[m[K’ was not declared in this scope
+   67 |    [01;31m[Kcommand_waiting_times_[m[K.clear();
+      |    [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:81:3:[m[K [01;31m[Kerror: [m[K‘[01m[Kattitude_controller_[m[K’ was not declared in this scope; did you mean ‘[01m[KAttitudeController[m[K’?
+   81 |   [01;31m[Kattitude_controller_[m[K.SetTrajectoryPoint(eigen_reference);
+      |   [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+      |   [32m[KAttitudeController[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:[m[K In member function ‘[01m[Kvoid rotors_control::LQRControllerNode::UpdateController()[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:235:9:[m[K [01;31m[Kerror: [m[K‘[01m[KwaypointHasBeenPublished_[m[K’ was not declared in this scope
+  235 |     if ([01;31m[KwaypointHasBeenPublished_[m[K)
+      |         [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:87:5:[m[K [01;31m[Kerror: [m[K‘[01m[KwaypointHasBeenPublished_[m[K’ was not declared in this scope
+   87 |     [01;31m[KwaypointHasBeenPublished_[m[K = true;
+      |     [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:[m[K At global scope:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:92:6:[m[K [01;31m[Kerror: [m[K‘[01m[KAttitudeControllerNode[m[K’ has not been declared
+   92 | void [01;31m[KAttitudeControllerNode[m[K::InitializeParams() {
+      |      [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:[m[K In function ‘[01m[Kvoid rotors_control::InitializeParams()[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:99:19:[m[K [01;31m[Kerror: [m[K‘[01m[Kattitude_controller_[m[K’ was not declared in this scope; did you mean ‘[01m[KAttitudeController[m[K’?
+   99 |                   [01;31m[Kattitude_controller_[m[K.controller_parameters_.xy_gain_kp_.x(),
+      |                   [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+      |                   [32m[KAttitudeController[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:[m[K At global scope:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:177:1:[m[K [01;31m[Kerror: [m[K‘[01m[KAttitudeControllerNode[m[K’ does not name a type; did you mean ‘[01m[KAttitudeController[m[K’?
+  177 | [01;31m[KAttitudeControllerNode[m[K::~AttitudeControllerNode() {}
+      | [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+      | [32m[KAttitudeController[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:179:6:[m[K [01;31m[Kerror: [m[K‘[01m[KAttitudeControllerNode[m[K’ has not been declared
+  179 | void [01;31m[KAttitudeControllerNode[m[K::geometryCallback(const mav_msgs::RateThrustConstPtr& rate_thrust) {
+      |      [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:[m[K In function ‘[01m[Kvoid rotors_control::geometryCallback(const RateThrustConstPtr&)[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:180:4:[m[K [01;31m[Kerror: [m[K‘[01m[Klast_rate_thrust_[m[K’ was not declared in this scope; did you mean ‘[01m[Krate_thrust[m[K’?
+  180 |    [01;31m[Klast_rate_thrust_[m[K = *rate_thrust;
+      |    [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+      |    [32m[Krate_thrust[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:[m[K At global scope:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:184:6:[m[K [01;31m[Kerror: [m[K‘[01m[KAttitudeControllerNode[m[K’ has not been declared
+  184 | void [01;31m[KAttitudeControllerNode[m[K::OdometryCallback(const nav_msgs::OdometryConstPtr& odometry_msg) {
+      |      [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:[m[K In function ‘[01m[Kvoid rotors_control::OdometryCallback(const OdometryConstPtr&)[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:190:3:[m[K [01;31m[Kerror: [m[K‘[01m[Kattitude_controller_[m[K’ was not declared in this scope; did you mean ‘[01m[KAttitudeController[m[K’?
+  190 |   [01;31m[Kattitude_controller_[m[K.SetCurrentStateFromOdometry(odometry);
+      |   [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+      |   [32m[KAttitudeController[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:[m[K At global scope:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:194:6:[m[K [01;31m[Kerror: [m[K‘[01m[KAttitudeControllerNode[m[K’ has not been declared
+  194 | void [01;31m[KAttitudeControllerNode[m[K::writeToFile(double thrust, double theta_command, double phi_command) {
+      |      [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:214:6:[m[K [01;31m[Kerror: [m[K‘[01m[KAttitudeControllerNode[m[K’ has not been declared
+  214 | void [01;31m[KAttitudeControllerNode[m[K::UpdateController() {
+      |      [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:[m[K In function ‘[01m[Kvoid rotors_control::UpdateController()[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:216:6:[m[K [01;31m[Kerror: [m[K‘[01m[KwaypointHasBeenPublished_[m[K’ was not declared in this scope
+  216 |   if([01;31m[KwaypointHasBeenPublished_[m[K){
+      |      [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:238:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kattitude_controller_[m[K’ was not declared in this scope; did you mean ‘[01m[KAttitudeController[m[K’?
+  238 |     [01;31m[Kattitude_controller_[m[K.control_t_.thrust = last_rate_thrust_.thrust.x ;
+      |     [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+      |     [32m[KAttitudeController[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:238:46:[m[K [01;31m[Kerror: [m[K‘[01m[Klast_rate_thrust_[m[K’ was not declared in this scope
+  238 |     attitude_controller_.control_t_.thrust = [01;31m[Klast_rate_thrust_[m[K.thrust.x ;
+      |                                              [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:272:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kmotor_velocity_reference_pub_[m[K’ was not declared in this scope
+  272 |     [01;31m[Kmotor_velocity_reference_pub_[m[K.publish(actuator_msg);
+      |     [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:286:21:[m[K [01;31m[Kerror: [m[K‘[01m[KAttitudeControllerNode[m[K’ is not a member of ‘[01m[Krotors_control[m[K’; did you mean ‘[01m[KAttitudeController[m[K’?
+  286 |     rotors_control::[01;31m[KAttitudeControllerNode[m[K attitude_controller_node;
+      |                     [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+      |                     [32m[KAttitudeController[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/attitude_controller_node_v2.cpp:291:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kattitude_controller_node[m[K’ was not declared in this scope
+  291 |         [01;31m[Kattitude_controller_node[m[K.UpdateController();
+      |         [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/attitude_controller_node_v2.dir/build.make:63: CMakeFiles/attitude_controller_node_v2.dir/src/nodes/attitude_controller_node_v2.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1432: CMakeFiles/attitude_controller_node_v2.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make[2]: *** [CMakeFiles/lqr_feedforward_controller_node.dir/build.make:63: CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1845: CMakeFiles/lqr_feedforward_controller_node.dir/all] Error 2
+make: *** [Makefile:130: all] Error 2

@@ -1,0 +1,14 @@
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:[m[K In constructor ‘[01m[Krotors_control::LQRControllerNode::LQRControllerNode()[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:36:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kcurrent_state_[m[K’ was not declared in this scope
+   36 |     [01;31m[Kcurrent_state_[m[K = Eigen::VectorXd::Zero(12);
+      |     [01;31m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:37:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kdesired_state_[m[K’ was not declared in this scope
+   37 |     [01;31m[Kdesired_state_[m[K = Eigen::VectorXd::Zero(12);
+      |     [01;31m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:256:23:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass rotors_control::LQRControllerNode[m[K’ has no member named ‘[01m[KsetDesiredState[m[K’
+  256 |   lqr_controller_node.[01;31m[KsetDesiredState[m[K(desired_state);
+      |                       [01;31m[K^~~~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/lqr_feedforward_controller_node.dir/build.make:63: CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1845: CMakeFiles/lqr_feedforward_controller_node.dir/all] Error 2
+make: *** [Makefile:130: all] Error 2
