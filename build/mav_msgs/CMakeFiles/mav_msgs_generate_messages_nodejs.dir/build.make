@@ -74,8 +74,8 @@ CMakeFiles/mav_msgs_generate_messages_nodejs: /home/chris/catkin_ws/devel/.priva
 /home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/AttitudeThrust.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/AttitudeThrust.js: /home/chris/catkin_ws/src/mav_comm/mav_msgs/msg/AttitudeThrust.msg
 /home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/AttitudeThrust.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
-/home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/AttitudeThrust.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 /home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/AttitudeThrust.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/AttitudeThrust.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/chris/catkin_ws/build/mav_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from mav_msgs/AttitudeThrust.msg"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/chris/catkin_ws/src/mav_comm/mav_msgs/msg/AttitudeThrust.msg -Imav_msgs:/home/chris/catkin_ws/src/mav_comm/mav_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p mav_msgs -o /home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg
 
@@ -128,8 +128,8 @@ CMakeFiles/mav_msgs_generate_messages_nodejs: /home/chris/catkin_ws/devel/.priva
 /home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/DroneState.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/DroneState.js: /home/chris/catkin_ws/src/mav_comm/mav_msgs/msg/DroneState.msg
 /home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/DroneState.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
-/home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/DroneState.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 /home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/DroneState.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/DroneState.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/chris/catkin_ws/build/mav_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Generating Javascript code from mav_msgs/DroneState.msg"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/chris/catkin_ws/src/mav_comm/mav_msgs/msg/DroneState.msg -Imav_msgs:/home/chris/catkin_ws/src/mav_comm/mav_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p mav_msgs -o /home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg
 

@@ -73,13 +73,13 @@ CMakeFiles/mav_planning_msgs_generate_messages_nodejs: /home/chris/catkin_ws/dev
 
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PointCloudWithPose.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/share/sensor_msgs/msg/PointCloud2.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/share/sensor_msgs/msg/PointField.msg
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/share/geometry_msgs/msg/TransformStamped.msg
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/share/sensor_msgs/msg/PointField.msg
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/share/geometry_msgs/msg/Transform.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/share/sensor_msgs/msg/PointCloud2.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PointCloudWithPose.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/chris/catkin_ws/build/mav_planning_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from mav_planning_msgs/PointCloudWithPose.msg"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PointCloudWithPose.msg -Imav_planning_msgs:/home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Imav_msgs:/home/chris/catkin_ws/src/mav_comm/mav_msgs/msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -p mav_planning_msgs -o /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg
 
@@ -91,17 +91,17 @@ CMakeFiles/mav_planning_msgs_generate_messages_nodejs: /home/chris/catkin_ws/dev
 
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHoles.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHoles.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolygonWithHoles.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHoles.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/Point2D.msg
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHoles.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/Polygon2D.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHoles.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/Point2D.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/chris/catkin_ws/build/mav_planning_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Javascript code from mav_planning_msgs/PolygonWithHoles.msg"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolygonWithHoles.msg -Imav_planning_msgs:/home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Imav_msgs:/home/chris/catkin_ws/src/mav_comm/mav_msgs/msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -p mav_planning_msgs -o /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg
 
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHolesStamped.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHolesStamped.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolygonWithHolesStamped.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHolesStamped.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/Point2D.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHolesStamped.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolygonWithHoles.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHolesStamped.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHolesStamped.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/Polygon2D.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHolesStamped.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolygonWithHoles.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHolesStamped.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/Point2D.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg/PolygonWithHolesStamped.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/chris/catkin_ws/build/mav_planning_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Javascript code from mav_planning_msgs/PolygonWithHolesStamped.msg"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolygonWithHolesStamped.msg -Imav_planning_msgs:/home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Imav_msgs:/home/chris/catkin_ws/src/mav_comm/mav_msgs/msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -p mav_planning_msgs -o /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/msg
 
@@ -133,30 +133,30 @@ CMakeFiles/mav_planning_msgs_generate_messages_nodejs: /home/chris/catkin_ws/dev
 
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/srv/PlannerService.srv
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolynomialSegment.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolynomialTrajectory4D.msg
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/trajectory_msgs/msg/MultiDOFJointTrajectory.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/Twist.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/trajectory_msgs/msg/MultiDOFJointTrajectoryPoint.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolynomialSegment4D.msg
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolynomialTrajectory.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolynomialSegment4D.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/Twist.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/Transform.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/trajectory_msgs/msg/MultiDOFJointTrajectoryPoint.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolynomialSegment.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolynomialTrajectory4D.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PlannerService.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/chris/catkin_ws/build/mav_planning_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Generating Javascript code from mav_planning_msgs/PlannerService.srv"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/srv/PlannerService.srv -Imav_planning_msgs:/home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Imav_msgs:/home/chris/catkin_ws/src/mav_comm/mav_msgs/msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -p mav_planning_msgs -o /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv
 
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PolygonService.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PolygonService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/srv/PolygonService.srv
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PolygonService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolygonWithHolesStamped.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PolygonService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/Point2D.msg
+/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PolygonService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolygonWithHoles.msg
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PolygonService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/Polygon2D.msg
 /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PolygonService.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PolygonService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolygonWithHolesStamped.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PolygonService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/PolygonWithHoles.msg
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv/PolygonService.js: /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg/Point2D.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/chris/catkin_ws/build/mav_planning_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Generating Javascript code from mav_planning_msgs/PolygonService.srv"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/srv/PolygonService.srv -Imav_planning_msgs:/home/chris/catkin_ws/src/mav_comm/mav_planning_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Imav_msgs:/home/chris/catkin_ws/src/mav_comm/mav_msgs/msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -p mav_planning_msgs -o /home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/gennodejs/ros/mav_planning_msgs/srv
 

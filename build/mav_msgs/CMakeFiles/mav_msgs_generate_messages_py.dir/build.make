@@ -75,8 +75,8 @@ CMakeFiles/mav_msgs_generate_messages_py: /home/chris/catkin_ws/devel/.private/m
 /home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_AttitudeThrust.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_AttitudeThrust.py: /home/chris/catkin_ws/src/mav_comm/mav_msgs/msg/AttitudeThrust.msg
 /home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_AttitudeThrust.py: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
-/home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_AttitudeThrust.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 /home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_AttitudeThrust.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_AttitudeThrust.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/chris/catkin_ws/build/mav_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG mav_msgs/AttitudeThrust"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/chris/catkin_ws/src/mav_comm/mav_msgs/msg/AttitudeThrust.msg -Imav_msgs:/home/chris/catkin_ws/src/mav_comm/mav_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p mav_msgs -o /home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg
 
@@ -129,8 +129,8 @@ CMakeFiles/mav_msgs_generate_messages_py: /home/chris/catkin_ws/devel/.private/m
 /home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_DroneState.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_DroneState.py: /home/chris/catkin_ws/src/mav_comm/mav_msgs/msg/DroneState.msg
 /home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_DroneState.py: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
-/home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_DroneState.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 /home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_DroneState.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg/_DroneState.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/chris/catkin_ws/build/mav_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Generating Python from MSG mav_msgs/DroneState"
 	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/chris/catkin_ws/src/mav_comm/mav_msgs/msg/DroneState.msg -Imav_msgs:/home/chris/catkin_ws/src/mav_comm/mav_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p mav_msgs -o /home/chris/catkin_ws/devel/.private/mav_msgs/lib/python3/dist-packages/mav_msgs/msg
 

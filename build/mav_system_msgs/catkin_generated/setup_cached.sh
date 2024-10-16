@@ -8,5 +8,8 @@
 
 # modified environment variables
 export CMAKE_PREFIX_PATH="/home/chris/catkin_ws/devel/.private/mav_system_msgs:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/chris/catkin_ws/devel/.private/mav_system_msgs/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/home/chris/catkin_ws/devel/.private/mav_system_msgs/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD='/home/chris/catkin_ws/build/mav_system_msgs'
+export PYTHONPATH="/home/chris/catkin_ws/devel/.private/mav_system_msgs/lib/python3/dist-packages:$PYTHONPATH"
 export ROS_PACKAGE_PATH="/home/chris/catkin_ws/src/mav_comm/mav_system_msgs:$ROS_PACKAGE_PATH"

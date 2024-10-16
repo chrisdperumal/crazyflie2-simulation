@@ -1,0 +1,15 @@
+[36m--[0m Using CATKIN_DEVEL_PREFIX: /home/chris/catkin_ws/devel/.private/rotors_evaluation
+[36m--[0m Using CMAKE_PREFIX_PATH: /home/chris/catkin_ws/devel;/opt/ros/noetic
+[36m--[0m This workspace overlays: /home/chris/catkin_ws/devel;/opt/ros/noetic
+[36m--[0m Using PYTHON_EXECUTABLE: /usr/bin/python3
+[36m--[0m Using Debian Python package layout
+[36m--[0m Using empy: /usr/lib/python3/dist-packages/em.py
+[36m--[0m Using CATKIN_ENABLE_TESTING: False
+[36m--[0m catkin 0.8.10
+[36m--[0m BUILD_SHARED_LIBS is on
+[36m--[0m Installing devel-space wrapper /home/chris/catkin_ws/src/CrazyS/rotors_evaluation/src/disturbance_eval.py to /home/chris/catkin_ws/devel/.private/rotors_evaluation/lib/rotors_evaluation
+[36m--[0m Installing devel-space wrapper /home/chris/catkin_ws/src/CrazyS/rotors_evaluation/src/hovering_eval.py to /home/chris/catkin_ws/devel/.private/rotors_evaluation/lib/rotors_evaluation
+[36m--[0m Installing devel-space wrapper /home/chris/catkin_ws/src/CrazyS/rotors_evaluation/src/waypoints_eval.py to /home/chris/catkin_ws/devel/.private/rotors_evaluation/lib/rotors_evaluation
+[36m--[0m Configuring done
+[36m--[0m Generating done
+[36m--[0m Build files have been written to: /home/chris/catkin_ws/build/rotors_evaluation

@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/chris/catkin_ws/build/rotors_comm
 include CMakeFiles/_rotors_comm_generate_messages_check_deps_WindSpeed.dir/progress.make
 
 CMakeFiles/_rotors_comm_generate_messages_check_deps_WindSpeed:
-	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py rotors_comm /home/chris/catkin_ws/src/CrazyS/rotors_comm/msg/WindSpeed.msg geometry_msgs/Vector3:std_msgs/Header
+	catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py rotors_comm /home/chris/catkin_ws/src/CrazyS/rotors_comm/msg/WindSpeed.msg std_msgs/Header:geometry_msgs/Vector3
 
 _rotors_comm_generate_messages_check_deps_WindSpeed: CMakeFiles/_rotors_comm_generate_messages_check_deps_WindSpeed
 _rotors_comm_generate_messages_check_deps_WindSpeed: CMakeFiles/_rotors_comm_generate_messages_check_deps_WindSpeed.dir/build.make
