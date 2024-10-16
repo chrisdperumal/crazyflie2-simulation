@@ -18,7 +18,7 @@
 #include <ros/time.h>
 
 #include "rotors_control/common.h"
-#include "rotors_control/attitude_controller.h"
+#include "rotors_control/lqr_feedforward_controller.h"
 // #include "rotors_control/crazyflie_complementary_filter.h"
 
 namespace rotors_control
@@ -50,7 +50,7 @@ namespace rotors_control
         mav_msgs::EigenTrajectoryPointDeque commands_;
         std::deque<ros::Duration> command_waiting_times_;
 
-        AttitudeController attitude_controller_;
+        LQRFeedforwardController lqr_feedforward_controller_; ;
 
         mav_msgs::RateThrust last_rate_thrust_;
     };

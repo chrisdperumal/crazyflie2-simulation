@@ -6,6 +6,8 @@
 *~
 */models/iris/*.sdf
 *.user
+*.build
+*.logs
 
 # Prerequisites
 *.d

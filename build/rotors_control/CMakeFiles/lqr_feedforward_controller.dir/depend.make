@@ -14,11 +14,11 @@ CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller
 CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/Quaternion.h
 CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/Scalar.h
 CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/Vector3.h
-CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/attitude_controller.h
 CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/common.h
 CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/controller_parameters.h
 CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/crazyflie_complementary_filter.h
 CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/crazyflie_onboard_controller.h
+CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/lqr_feedforward_controller.h
 CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/parameters.h
 CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/sensfusion6.h
 CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/stabilizer_types.h

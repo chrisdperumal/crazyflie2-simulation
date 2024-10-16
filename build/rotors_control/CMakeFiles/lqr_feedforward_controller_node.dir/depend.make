@@ -8,11 +8,11 @@ CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_control
 CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/devel/.private/mav_msgs/include/mav_msgs/RollPitchYawrateThrust.h
 CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/devel/.private/mav_msgs/include/mav_msgs/RollPitchYawrateThrustCrazyflie.h
 CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/devel/.private/mav_msgs/include/mav_msgs/TorqueThrust.h
-CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/attitude_controller.h
 CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/common.h
 CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/controller_parameters.h
 CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/crazyflie_complementary_filter.h
 CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/crazyflie_onboard_controller.h
+CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/lqr_feedforward_controller.h
 CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/parameters.h
 CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/parameters_ros.h
 CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/sensfusion6.h

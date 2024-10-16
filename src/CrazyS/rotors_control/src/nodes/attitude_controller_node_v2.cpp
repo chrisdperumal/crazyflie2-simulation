@@ -285,7 +285,7 @@ int main(int argc, char** argv) {
 
     rotors_control::AttitudeControllerNode attitude_controller_node;
 
-    ros::Rate rate(100); // 10 Hz
+    ros::Rate rate(1000); // 100 Hz
 
     while (ros::ok()) {
         attitude_controller_node.UpdateController();

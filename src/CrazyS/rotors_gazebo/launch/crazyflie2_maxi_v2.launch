@@ -52,7 +52,7 @@
    </node>
 
 <!-- This is the file that "steers the drone. It has waypoints it should go to. "hovering_eight_odometry-->
-   <node name="hovering_eight_odometry" pkg="rotors_gazebo" type="hovering_eight_odometry" output="screen" />
+   <node name="hovering_eight_v2" pkg="rotors_gazebo" type="hovering_eight_v2" output="screen" />
    <!--<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
    <node name="quaternion_to_rpy" pkg="rotors_gazebo" type="quaternion_to_rpy" output="screen" >

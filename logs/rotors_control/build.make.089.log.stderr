@@ -1,0 +1,44 @@
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:110:10:[m[K [01;31m[Kerror: [m[K‘[01m[KPositionController[m[K’ has not been declared
+  110 |     void [01;31m[KPositionController[m[K::SetControllerGains()
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:[m[K In function ‘[01m[Kvoid rotors_control::SetControllerGains()[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:115:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kxy_gain_kp_[m[K’ was not declared in this scope
+  115 |         [01;31m[Kxy_gain_kp_[m[K = Eigen::Vector2f(controller_parameters_.xy_gain_kp_.x() * factor, controller_parameters_.xy_gain_kp_.y() * factor);
+      |         [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:115:39:[m[K [01;31m[Kerror: [m[K‘[01m[Kcontroller_parameters_[m[K’ was not declared in this scope
+  115 |         xy_gain_kp_ = Eigen::Vector2f([01;31m[Kcontroller_parameters_[m[K.xy_gain_kp_.x() * factor, controller_parameters_.xy_gain_kp_.y() * factor);
+      |                                       [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:116:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kxy_gain_ki_[m[K’ was not declared in this scope
+  116 |         [01;31m[Kxy_gain_ki_[m[K = Eigen::Vector2f(controller_parameters_.xy_gain_ki_.x() * factor, controller_parameters_.xy_gain_ki_.y() * factor);
+      |         [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:118:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kattitude_gain_kp_[m[K’ was not declared in this scope
+  118 |         [01;31m[Kattitude_gain_kp_[m[K = Eigen::Vector2f(controller_parameters_.attitude_gain_kp_.x() * factor, controller_parameters_.attitude_gain_kp_.y() * factor);
+      |         [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:119:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kattitude_gain_ki_[m[K’ was not declared in this scope
+  119 |         [01;31m[Kattitude_gain_ki_[m[K = Eigen::Vector2f(controller_parameters_.attitude_gain_ki_.x() * factor, controller_parameters_.attitude_gain_ki_.y() * factor);
+      |         [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:121:9:[m[K [01;31m[Kerror: [m[K‘[01m[Krate_gain_kp_[m[K’ was not declared in this scope
+  121 |         [01;31m[Krate_gain_kp_[m[K = Eigen::Vector3f(controller_parameters_.rate_gain_kp_.x() * factor, controller_parameters_.rate_gain_kp_.y() * factor, controller_parameters_.rate_gain_kp_.z() * factor);
+      |         [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:122:9:[m[K [01;31m[Kerror: [m[K‘[01m[Krate_gain_ki_[m[K’ was not declared in this scope
+  122 |         [01;31m[Krate_gain_ki_[m[K = Eigen::Vector3f(controller_parameters_.rate_gain_ki_.x() * factor, controller_parameters_.rate_gain_ki_.y() * factor, controller_parameters_.rate_gain_ki_.z() * factor);
+      |         [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:124:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kyaw_gain_kp_[m[K’ was not declared in this scope
+  124 |         [01;31m[Kyaw_gain_kp_[m[K = controller_parameters_.yaw_gain_kp_ * 2;
+      |         [01;31m[K^~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:125:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kyaw_gain_ki_[m[K’ was not declared in this scope
+  125 |         [01;31m[Kyaw_gain_ki_[m[K = controller_parameters_.yaw_gain_ki_ * 2;
+      |         [01;31m[K^~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:127:9:[m[K [01;31m[Kerror: [m[K‘[01m[Khovering_gain_kp_[m[K’ was not declared in this scope
+  127 |         [01;31m[Khovering_gain_kp_[m[K = controller_parameters_.hovering_gain_kp_ * 2;
+      |         [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:128:9:[m[K [01;31m[Kerror: [m[K‘[01m[Khovering_gain_ki_[m[K’ was not declared in this scope
+  128 |         [01;31m[Khovering_gain_ki_[m[K = controller_parameters_.hovering_gain_ki_ * 2;
+      |         [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/attitude_controller_v2.cpp:129:9:[m[K [01;31m[Kerror: [m[K‘[01m[Khovering_gain_kd_[m[K’ was not declared in this scope
+  129 |         [01;31m[Khovering_gain_kd_[m[K = controller_parameters_.hovering_gain_kd_ * 2;
+      |         [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/attitude_controller_v2.dir/build.make:63: CMakeFiles/attitude_controller_v2.dir/src/library/attitude_controller_v2.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:327: CMakeFiles/attitude_controller_v2.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:130: all] Error 2

@@ -82,8 +82,8 @@ void PositionControllerNode::MultiDofJointTrajectoryCallback(const trajectory_ms
   mav_msgs::eigenTrajectoryPointFromMsg(msg->points.front(), &eigen_reference);
   commands_.push_front(eigen_reference);
 
-  ROS_INFO("Drone desired position in callback.XXX [x_d: %f, y_d: %f, z_d: %f]", eigen_reference.position_W[0],
-        eigen_reference.position_W[1], eigen_reference.position_W[2]);
+  // ROS_INFO("Drone desired position in callback.XXX [x_d: %f, y_d: %f, z_d: %f]", eigen_reference.position_W[0],
+  //       eigen_reference.position_W[1], eigen_reference.position_W[2]);
 
 
   // We can trigger the first command immediately.

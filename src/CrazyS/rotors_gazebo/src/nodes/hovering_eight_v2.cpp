@@ -1,6 +1,7 @@
 #include <thread>
 #include <chrono>
 #include <Eigen/Core>
+#include <cmath>
 #include <mav_msgs/conversions.h>
 #include <mav_msgs/default_topics.h>
 #include <ros/ros.h>
@@ -10,14 +11,28 @@
 
 Eigen::Vector3d current_position;
 
-void odometryCallback(const nav_msgs::Odometry::ConstPtr& msg) {
+void odometryCallback(const nav_msgs::Odometry::ConstPtr &msg)
+{
   current_position.x() = msg->pose.pose.position.x;
   current_position.y() = msg->pose.pose.position.y;
   current_position.z() = msg->pose.pose.position.z;
-
 }
 
-void publishTrajectory(const ros::Publisher& publisher, const Eigen::Vector3d& position, double yaw) {
+std::vector<Eigen::Vector3d> computeWaypoints(double t_start, double t_end, double dt)
+{
+  std::vector<Eigen::Vector3d> waypoints;
+  for (double t = t_start; t <= t_end; t += dt)
+  {
+    double x = 2 * std::sin(0.5 * t); // x(t) = 2 * sin(0.5 * t)
+    double y = std::sin(t);           // y(t) = sin(t)
+    double z = 1.0;                   // z(t) = 1
+    waypoints.emplace_back(x, y, z);  // Add the point (x, y, z) to the waypoints list
+  }
+  return waypoints;
+}
+
+void publishTrajectory(const ros::Publisher &publisher, const Eigen::Vector3d &position, double yaw)
+{
   trajectory_msgs::MultiDOFJointTrajectory trajectory_msg;
   trajectory_msg.header.stamp = ros::Time::now();
   mav_msgs::msgMultiDofJointTrajectoryFromPositionYaw(position, yaw, &trajectory_msg);
@@ -25,14 +40,16 @@ void publishTrajectory(const ros::Publisher& publisher, const Eigen::Vector3d& p
   ROS_INFO("Publishing waypoint: [%f, %f, %f].", position.x(), position.y(), position.z());
 }
 
-bool isCloseEnough(const Eigen::Vector3d& target_position, double threshold) {
+bool isCloseEnough(const Eigen::Vector3d &target_position, double threshold)
+{
   double distance = std::sqrt(std::pow(current_position.x() - target_position.x(), 2) +
                               std::pow(current_position.y() - target_position.y(), 2) +
                               std::pow(current_position.z() - target_position.z(), 2));
   return distance < threshold;
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv)
+{
   ros::init(argc, argv, "trajectory_follower");
   ros::NodeHandle nh;
   ros::NodeHandle nh_private("~");
@@ -40,7 +57,6 @@ int main(int argc, char** argv) {
   ros::Publisher trajectory_pub =
       nh.advertise<trajectory_msgs::MultiDOFJointTrajectory>(
           mav_msgs::default_topics::COMMAND_TRAJECTORY, 10);
-
 
   ros::Subscriber odometry_sub = nh.subscribe<nav_msgs::Odometry>(
       "odometry", 10, odometryCallback);
@@ -51,32 +67,38 @@ int main(int argc, char** argv) {
   bool unpaused = ros::service::call("/gazebo/unpause_physics", srv);
   unsigned int i = 0;
 
-  while (i <= 15 && !unpaused) {
+  while (i <= 15 && !unpaused)
+  {
     ROS_INFO("Wait for 1 second before trying to unpause Gazebo again.");
     std::this_thread::sleep_for(std::chrono::seconds(1));
     unpaused = ros::service::call("/gazebo/unpause_physics", srv);
     ++i;
   }
 
-  if (!unpaused) {
+  if (!unpaused)
+  {
     ROS_FATAL("Could not wake up Gazebo.");
     return -1;
-  } else {
+  }
+  else
+  {
     ROS_INFO("Unpaused the Gazebo simulation.");
   }
 
   ros::Duration(3.0).sleep();
 
-  // define waypoints where to fly to:
-  std::vector<Eigen::Vector3d> waypoints = {
-    {0.0, 0.0, 2.0},
-    {0.0, 15.5, 1.0},
-  };
+  // Compute waypoints using the provided trajectory
+  double t_start = 0.0;
+  double t_end = 4 * M_PI; // Duration of the trajectory in seconds
+  double dt = 0.2;         // Time step (adjust for smoothness)
+
+  std::vector<Eigen::Vector3d> waypoints = computeWaypoints(t_start, t_end, dt);
 
   double threshold = 0.05; // Distance threshold to consider the drone has reached the waypoint
   double desired_yaw = 0.0;
 
-  for(int i =0; i<=waypoints.size(); i++){
+  for (int i = 0; i <= waypoints.size(); i++)
+  {
     Eigen::Vector3d desired_position = waypoints[i];
 
     // Overwrite defaults if set as node parameters.
@@ -87,23 +109,23 @@ int main(int argc, char** argv) {
 
     publishTrajectory(trajectory_pub, desired_position, desired_yaw);
 
-    while (ros::ok() && !isCloseEnough(desired_position, threshold)) {
+    while (ros::ok() && !isCloseEnough(desired_position, threshold))
+    {
       ros::spinOnce();
       ROS_INFO("Current position: [x: %f, y: %f, z: %f]", current_position.x(), current_position.y(), current_position.z());
-      std::this_thread::sleep_for(std::chrono::milliseconds(250)); 
+      std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 
     publishTrajectory(trajectory_pub, desired_position, desired_yaw);
-    ROS_INFO("WAYPOINT %d REACHED! Hovering for 5 seconds...", i + 1);
-    ros::Time start_hover = ros::Time::now();
-    ros::Duration hover_duration(5.0);
-    while (ros::Time::now() - start_hover < hover_duration) {
-        ros::spinOnce();
-        ROS_INFO("Current position during hover: [x: %f, y: %f, z: %f]", current_position.x(), current_position.y(), current_position.z());
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    }
-
-    
+    ROS_INFO("WAYPOINT %d REACHED!", i + 1);
+    // ros::Time start_hover = ros::Time::now();
+    // ros::Duration hover_duration(5.0);
+    // while (ros::Time::now() - start_hover < hover_duration)
+    // {
+    //   ros::spinOnce();
+    //   ROS_INFO("Current position during hover: [x: %f, y: %f, z: %f]", current_position.x(), current_position.y(), current_position.z());
+    //   std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    // }
   }
 
   ROS_INFO("SHUTDOWN ROS! ");

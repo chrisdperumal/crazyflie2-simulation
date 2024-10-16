@@ -1,4 +1,4 @@
-#include "rotors_control/attitude_controller.h"
+#include "rotors_control/lqr_feedforward_controller.h"
 #include "rotors_control/transform_datatypes.h"
 #include "rotors_control/Matrix3x3.h"
 #include "rotors_control/Quaternion.h"
@@ -38,7 +38,7 @@
 
 namespace rotors_control {
 
-AttitudeController::AttitudeController()
+LQRFeedforwardController::LQRFeedforwardController()
     : controller_active_(false),
     state_estimator_active_(false),
     dataStoring_active_(false),
@@ -85,10 +85,10 @@ AttitudeController::AttitudeController()
 
 }
 
-AttitudeController::~AttitudeController(){}
+LQRFeedforwardController::~LQRFeedforwardController(){}
 
 // Controller gains are entered into local global variables
-void AttitudeController::SetControllerGains(){
+void LQRFeedforwardController::SetControllerGains(){
 
       xy_gain_kp_ = Eigen::Vector2f(controller_parameters_.xy_gain_kp_.x(), controller_parameters_.xy_gain_kp_.y());
       xy_gain_ki_ = Eigen::Vector2f(controller_parameters_.xy_gain_ki_.x(), controller_parameters_.xy_gain_ki_.y());
@@ -108,12 +108,12 @@ void AttitudeController::SetControllerGains(){
 
 }
 
-void AttitudeController::SetTrajectoryPoint(const mav_msgs::EigenTrajectoryPoint& command_trajectory) {
+void LQRFeedforwardController::SetTrajectoryPoint(const mav_msgs::EigenTrajectoryPoint& command_trajectory) {
     command_trajectory_= command_trajectory;
     controller_active_= true;
 }
 
-void AttitudeController::HoveringController(double* omega) {
+void LQRFeedforwardController::HoveringController(double* omega) {
 
     assert(omega);
 
@@ -159,7 +159,7 @@ void AttitudeController::HoveringController(double* omega) {
     //  ROS_INFO("Omega: %f, delta_omega: %f", *omega, delta_omega);
 
 }
-void AttitudeController::AttitudeControllerFunction(double* p_command, double* q_command, double theta_command, double phi_command) {
+void LQRFeedforwardController::LQRFeedforwardControllerFunction(double* p_command, double* q_command, double theta_command, double phi_command) {
 
     assert(p_command);
     assert(q_command);
@@ -196,7 +196,7 @@ void AttitudeController::AttitudeControllerFunction(double* p_command, double* q
 
 
 
-void AttitudeController::XYController(double* theta_command, double* phi_command) {
+void LQRFeedforwardController::XYController(double* theta_command, double* phi_command) {
 
     assert(theta_command);
     assert(phi_command);
@@ -254,7 +254,7 @@ void AttitudeController::XYController(double* theta_command, double* phi_command
 
 
 
-void AttitudeController::ControlMixer(double thrust, double delta_phi, double delta_theta, double delta_psi, 
+void LQRFeedforwardController::ControlMixer(double thrust, double delta_phi, double delta_theta, double delta_psi, 
         double* PWM_1, double* PWM_2, double* PWM_3, double* PWM_4) {
     assert(PWM_1);
     assert(PWM_2);
@@ -274,7 +274,7 @@ void AttitudeController::ControlMixer(double thrust, double delta_phi, double de
 }
 
 
-void AttitudeController::YawPositionController(double* r_command) {
+void LQRFeedforwardController::YawPositionController(double* r_command) {
     assert(r_command);
 
     double roll, pitch, yaw;
@@ -299,7 +299,7 @@ void AttitudeController::YawPositionController(double* r_command) {
 
 
 
-void AttitudeController::ErrorBodyFrame(double* xe, double* ye) const {
+void LQRFeedforwardController::ErrorBodyFrame(double* xe, double* ye) const {
     //ROS_INFO("WUHU");
     assert(xe);
     assert(ye);
@@ -324,7 +324,7 @@ void AttitudeController::ErrorBodyFrame(double* xe, double* ye) const {
 
 
 // Odometry values are put in the state structure. The structure contains the aircraft state
-void AttitudeController::SetSensorData() {
+void LQRFeedforwardController::SetSensorData() {
     //ROS_INFO("In sensorDATA");
     
     // Only the position sensor is ideal, any virtual sensor or systems is available to get it
@@ -347,7 +347,7 @@ void AttitudeController::SetSensorData() {
 }
 
 
-void AttitudeController::RateController(double* delta_phi, double* delta_theta, double* delta_psi, double p_command, double q_command, double r_command) {
+void LQRFeedforwardController::RateController(double* delta_phi, double* delta_theta, double* delta_psi, double p_command, double q_command, double r_command) {
 
     assert(delta_phi);
     assert(delta_theta);
@@ -379,7 +379,7 @@ void AttitudeController::RateController(double* delta_phi, double* delta_theta, 
 
 }
 //Such function is invoked by the position controller node when the state estimator is not in the loop
-void AttitudeController::SetCurrentStateFromOdometry(const EigenOdometry& odometry) {
+void LQRFeedforwardController::SetCurrentStateFromOdometry(const EigenOdometry& odometry) {
 
     odometry_ = odometry;
 
@@ -388,7 +388,7 @@ void AttitudeController::SetCurrentStateFromOdometry(const EigenOdometry& odomet
 
 }
 
-void AttitudeController::Quaternion2Euler(double* roll, double* pitch, double* yaw) const {
+void LQRFeedforwardController::Quaternion2Euler(double* roll, double* pitch, double* yaw) const {
     assert(roll);
     assert(pitch);
     assert(yaw);
@@ -407,7 +407,7 @@ void AttitudeController::Quaternion2Euler(double* roll, double* pitch, double* y
     //ROS_DEBUG("Roll: %f, Pitch: %f, Yaw: %f", *roll, *pitch, *yaw);
 }
 
-void AttitudeController::CalculateRotorVelocities(Eigen::Vector4d* rotor_velocities, double PWM_1, double PWM_2, double PWM_3, double PWM_4) {
+void LQRFeedforwardController::CalculateRotorVelocities(Eigen::Vector4d* rotor_velocities, double PWM_1, double PWM_2, double PWM_3, double PWM_4) {
     assert(rotor_velocities);
 
     // Disable the controller if no trajectory is received

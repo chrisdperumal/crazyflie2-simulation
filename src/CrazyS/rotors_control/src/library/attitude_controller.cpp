@@ -230,7 +230,7 @@ void AttitudeController::XYController(double* theta_command, double* phi_command
 
     // Theta command is saturated considering the aircraft physical constraints
     if(!(*theta_command < MAX_THETA_COMMAND && *theta_command > -MAX_THETA_COMMAND)){
-        // ROS_INFO("SATURATED PHISICAL CONTSTRAINTS OF AIRCRAFT THETA");
+        ROS_INFO("Attitude Controller: SATURATED PHYSICAL CONTSTRAINTS OF AIRCRAFT THETA");
         if(*theta_command > MAX_THETA_COMMAND)
           *theta_command = MAX_THETA_COMMAND;
         else

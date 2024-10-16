@@ -90,7 +90,7 @@ namespace rotors_control
     setDesiredState(desired_state);
 
     // We can trigger the first command immediately.
-    attitude_controller_.SetTrajectoryPoint(eigen_reference);
+    lqr_feedforward_controller_.SetTrajectoryPoint(eigen_reference);
     commands_.pop_front();
 
     // trajectory_msg
@@ -109,68 +109,68 @@ namespace rotors_control
 
     // Parameters reading from rosparam.
     GetRosParameter(pnh, "xy_gain_kp/x",
-                    attitude_controller_.controller_parameters_.xy_gain_kp_.x(),
-                    &attitude_controller_.controller_parameters_.xy_gain_kp_.x());
+                    lqr_feedforward_controller_.controller_parameters_.xy_gain_kp_.x(),
+                    &lqr_feedforward_controller_.controller_parameters_.xy_gain_kp_.x());
     GetRosParameter(pnh, "xy_gain_kp/y",
-                    attitude_controller_.controller_parameters_.xy_gain_kp_.y(),
-                    &attitude_controller_.controller_parameters_.xy_gain_kp_.y());
+                    lqr_feedforward_controller_.controller_parameters_.xy_gain_kp_.y(),
+                    &lqr_feedforward_controller_.controller_parameters_.xy_gain_kp_.y());
     GetRosParameter(pnh, "xy_gain_ki/x",
-                    attitude_controller_.controller_parameters_.xy_gain_ki_.x(),
-                    &attitude_controller_.controller_parameters_.xy_gain_ki_.x());
+                    lqr_feedforward_controller_.controller_parameters_.xy_gain_ki_.x(),
+                    &lqr_feedforward_controller_.controller_parameters_.xy_gain_ki_.x());
     GetRosParameter(pnh, "xy_gain_ki/y",
-                    attitude_controller_.controller_parameters_.xy_gain_ki_.y(),
-                    &attitude_controller_.controller_parameters_.xy_gain_ki_.y());
+                    lqr_feedforward_controller_.controller_parameters_.xy_gain_ki_.y(),
+                    &lqr_feedforward_controller_.controller_parameters_.xy_gain_ki_.y());
 
     GetRosParameter(pnh, "attitude_gain_kp/phi",
-                    attitude_controller_.controller_parameters_.attitude_gain_kp_.x(),
-                    &attitude_controller_.controller_parameters_.attitude_gain_kp_.x());
+                    lqr_feedforward_controller_.controller_parameters_.attitude_gain_kp_.x(),
+                    &lqr_feedforward_controller_.controller_parameters_.attitude_gain_kp_.x());
     GetRosParameter(pnh, "attitude_gain_kp/phi",
-                    attitude_controller_.controller_parameters_.attitude_gain_kp_.y(),
-                    &attitude_controller_.controller_parameters_.attitude_gain_kp_.y());
+                    lqr_feedforward_controller_.controller_parameters_.attitude_gain_kp_.y(),
+                    &lqr_feedforward_controller_.controller_parameters_.attitude_gain_kp_.y());
     GetRosParameter(pnh, "attitude_gain_ki/theta",
-                    attitude_controller_.controller_parameters_.attitude_gain_ki_.x(),
-                    &attitude_controller_.controller_parameters_.attitude_gain_ki_.x());
+                    lqr_feedforward_controller_.controller_parameters_.attitude_gain_ki_.x(),
+                    &lqr_feedforward_controller_.controller_parameters_.attitude_gain_ki_.x());
     GetRosParameter(pnh, "attitude_gain_ki/theta",
-                    attitude_controller_.controller_parameters_.attitude_gain_ki_.y(),
-                    &attitude_controller_.controller_parameters_.attitude_gain_ki_.y());
+                    lqr_feedforward_controller_.controller_parameters_.attitude_gain_ki_.y(),
+                    &lqr_feedforward_controller_.controller_parameters_.attitude_gain_ki_.y());
 
     GetRosParameter(pnh, "rate_gain_kp/p",
-                    attitude_controller_.controller_parameters_.rate_gain_kp_.x(),
-                    &attitude_controller_.controller_parameters_.rate_gain_kp_.x());
+                    lqr_feedforward_controller_.controller_parameters_.rate_gain_kp_.x(),
+                    &lqr_feedforward_controller_.controller_parameters_.rate_gain_kp_.x());
     GetRosParameter(pnh, "rate_gain_kp/q",
-                    attitude_controller_.controller_parameters_.rate_gain_kp_.y(),
-                    &attitude_controller_.controller_parameters_.rate_gain_kp_.y());
+                    lqr_feedforward_controller_.controller_parameters_.rate_gain_kp_.y(),
+                    &lqr_feedforward_controller_.controller_parameters_.rate_gain_kp_.y());
     GetRosParameter(pnh, "rate_gain_kp/r",
-                    attitude_controller_.controller_parameters_.rate_gain_kp_.z(),
-                    &attitude_controller_.controller_parameters_.rate_gain_kp_.z());
+                    lqr_feedforward_controller_.controller_parameters_.rate_gain_kp_.z(),
+                    &lqr_feedforward_controller_.controller_parameters_.rate_gain_kp_.z());
     GetRosParameter(pnh, "rate_gain_ki/p",
-                    attitude_controller_.controller_parameters_.rate_gain_ki_.x(),
-                    &attitude_controller_.controller_parameters_.rate_gain_ki_.x());
+                    lqr_feedforward_controller_.controller_parameters_.rate_gain_ki_.x(),
+                    &lqr_feedforward_controller_.controller_parameters_.rate_gain_ki_.x());
     GetRosParameter(pnh, "rate_gain_ki/q",
-                    attitude_controller_.controller_parameters_.rate_gain_ki_.y(),
-                    &attitude_controller_.controller_parameters_.rate_gain_ki_.y());
+                    lqr_feedforward_controller_.controller_parameters_.rate_gain_ki_.y(),
+                    &lqr_feedforward_controller_.controller_parameters_.rate_gain_ki_.y());
     GetRosParameter(pnh, "rate_gain_ki/r",
-                    attitude_controller_.controller_parameters_.rate_gain_ki_.z(),
-                    &attitude_controller_.controller_parameters_.rate_gain_ki_.z());
+                    lqr_feedforward_controller_.controller_parameters_.rate_gain_ki_.z(),
+                    &lqr_feedforward_controller_.controller_parameters_.rate_gain_ki_.z());
 
     GetRosParameter(pnh, "yaw_gain_kp/yaw",
-                    attitude_controller_.controller_parameters_.yaw_gain_kp_,
-                    &attitude_controller_.controller_parameters_.yaw_gain_kp_);
+                    lqr_feedforward_controller_.controller_parameters_.yaw_gain_kp_,
+                    &lqr_feedforward_controller_.controller_parameters_.yaw_gain_kp_);
     GetRosParameter(pnh, "yaw_gain_ki/yaw",
-                    attitude_controller_.controller_parameters_.yaw_gain_ki_,
-                    &attitude_controller_.controller_parameters_.yaw_gain_ki_);
+                    lqr_feedforward_controller_.controller_parameters_.yaw_gain_ki_,
+                    &lqr_feedforward_controller_.controller_parameters_.yaw_gain_ki_);
 
     GetRosParameter(pnh, "hovering_gain_kp/z",
-                    attitude_controller_.controller_parameters_.hovering_gain_kp_,
-                    &attitude_controller_.controller_parameters_.hovering_gain_kp_);
+                    lqr_feedforward_controller_.controller_parameters_.hovering_gain_kp_,
+                    &lqr_feedforward_controller_.controller_parameters_.hovering_gain_kp_);
     GetRosParameter(pnh, "hovering_gain_ki/z",
-                    attitude_controller_.controller_parameters_.hovering_gain_ki_,
-                    &attitude_controller_.controller_parameters_.hovering_gain_ki_);
+                    lqr_feedforward_controller_.controller_parameters_.hovering_gain_ki_,
+                    &lqr_feedforward_controller_.controller_parameters_.hovering_gain_ki_);
     GetRosParameter(pnh, "hovering_gain_kd/z",
-                    attitude_controller_.controller_parameters_.hovering_gain_kd_,
-                    &attitude_controller_.controller_parameters_.hovering_gain_kd_);
+                    lqr_feedforward_controller_.controller_parameters_.hovering_gain_kd_,
+                    &lqr_feedforward_controller_.controller_parameters_.hovering_gain_kd_);
 
-    attitude_controller_.SetControllerGains();
+    lqr_feedforward_controller_.SetControllerGains();
 
     ROS_INFO_ONCE("[Position Controller] Set controller gains and vehicle parameters");
 
@@ -181,7 +181,7 @@ namespace rotors_control
     if (pnh.getParam("user_account", user))
     {
       ROS_INFO("Got param 'user_account': %s", user.c_str());
-      attitude_controller_.user_ = user;
+      lqr_feedforward_controller_.user_ = user;
     }
   }
 
@@ -246,7 +246,7 @@ namespace rotors_control
       control_input(0) += 0.6 * 9.81; // Add gravitational force
 
       ROS_INFO("Control Input: [%f, %f, %f, %f]",
-               control_input(0), control_input(1), control_input(2), control_input(3));
+               ref_rotor_velocities(0), ref_rotor_velocities(1), ref_rotor_velocities(2), ref_rotor_velocities(3));
 
       // Map the control input to the appropriate variables
       thrust = control_input(0);      // Thrust command
@@ -256,10 +256,10 @@ namespace rotors_control
 
       // Compute Control Mixer
       double PWM_1, PWM_2, PWM_3, PWM_4;
-      attitude_controller_.ControlMixer(thrust, delta_phi, delta_theta, delta_psi, &PWM_1, &PWM_2, &PWM_3, &PWM_4);
+      lqr_feedforward_controller_.ControlMixer(thrust, delta_phi, delta_theta, delta_psi, &PWM_1, &PWM_2, &PWM_3, &PWM_4);
 
       // Calculate Rotor Velocities
-      attitude_controller_.CalculateRotorVelocities(&ref_rotor_velocities, thrust, delta_phi, delta_theta, delta_psi);
+      lqr_feedforward_controller_.CalculateRotorVelocities(&ref_rotor_velocities, thrust, delta_phi, delta_theta, delta_psi);
 
       mav_msgs::ActuatorsPtr actuator_msg(new mav_msgs::Actuators);
       actuator_msg->angular_velocities.clear();

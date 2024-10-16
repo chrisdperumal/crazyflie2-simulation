@@ -158,32 +158,6 @@ geometry_msgs/Vector3.h
 geometry_msgs/Vector3.h
 -
 
-/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/attitude_controller.h
-mav_msgs/conversions.h
--
-mav_msgs/eigen_mav_msgs.h
--
-string
--
-ros/time.h
--
-common.h
-/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/common.h
-parameters.h
-/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/parameters.h
-stabilizer_types.h
-/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/stabilizer_types.h
-crazyflie_complementary_filter.h
-/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/crazyflie_complementary_filter.h
-crazyflie_onboard_controller.h
-/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/crazyflie_onboard_controller.h
-sensfusion6.h
-/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/sensfusion6.h
-controller_parameters.h
-/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/controller_parameters.h
-time.h
--
-
 /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/common.h
 assert.h
 -
@@ -209,6 +183,32 @@ stabilizer_types.h
 /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/stabilizer_types.h
 controller_parameters.h
 /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/controller_parameters.h
+
+/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/lqr_feedforward_controller.h
+mav_msgs/conversions.h
+-
+mav_msgs/eigen_mav_msgs.h
+-
+string
+-
+ros/time.h
+-
+common.h
+/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/common.h
+parameters.h
+/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/parameters.h
+stabilizer_types.h
+/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/stabilizer_types.h
+crazyflie_complementary_filter.h
+/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/crazyflie_complementary_filter.h
+crazyflie_onboard_controller.h
+/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/crazyflie_onboard_controller.h
+sensfusion6.h
+/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/sensfusion6.h
+controller_parameters.h
+/home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/controller_parameters.h
+time.h
+-
 
 /home/chris/catkin_ws/src/CrazyS/rotors_control/include/rotors_control/parameters.h
 
@@ -275,8 +275,8 @@ ros/time.h
 -
 rotors_control/common.h
 /home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/rotors_control/common.h
-rotors_control/attitude_controller.h
-/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/rotors_control/attitude_controller.h
+rotors_control/lqr_feedforward_controller.h
+/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/rotors_control/lqr_feedforward_controller.h
 
 /home/chris/catkin_ws/src/mav_comm/mav_msgs/include/mav_msgs/common.h
 geometry_msgs/Point.h

@@ -50,8 +50,8 @@
 #define MOTORS_INTERCEPT                         426.24 /* MOTORS_INTERCEPT [rad/s]*/
 #define MAX_PROPELLERS_ANGULAR_VELOCITY          2618 /* MAX PROPELLERS ANGULAR VELOCITY [rad/s]*/
 #define MAX_R_DESIDERED                          3.4907 /* MAX R DESIDERED VALUE [rad/s]*/
-#define MAX_THETA_COMMAND                        0.5236 /* MAX THETA COMMMAND [rad]*/
-#define MAX_PHI_COMMAND                          0.5236 /* MAX PHI COMMAND [rad]*/
+#define MAX_THETA_COMMAND                        0.5236  /* MAX THETA COMMMAND [rad]*/
+#define MAX_PHI_COMMAND                          0.5236  /* MAX PHI COMMAND [rad]*/
 #define MAX_POS_DELTA_OMEGA                      1289 /* MAX POSITIVE DELTA OMEGA [PWM]*/
 #define MAX_NEG_DELTA_OMEGA                      -1718 /* MAX NEGATIVE DELTA OMEGA [PWM]*/
 #define SAMPLING_TIME                            0.001 /* SAMPLING TIME [s] */
@@ -332,7 +332,7 @@ void PositionController::XYController(double* theta_command, double* phi_command
 
     // Theta command is saturated considering the aircraft physical constraints
     if(!(*theta_command < MAX_THETA_COMMAND && *theta_command > -MAX_THETA_COMMAND)){
-        ROS_INFO("SATURATED PHISICAL CONTSTRAINTS OF AIRCRAFT THETA");
+        // ROS_INFO("Position Controller: SATURATED PHYSICAL CONTSTRAINTS OF AIRCRAFT THETA");
         if(*theta_command > MAX_THETA_COMMAND)
           *theta_command = MAX_THETA_COMMAND;
         else
@@ -341,6 +341,7 @@ void PositionController::XYController(double* theta_command, double* phi_command
 
     // Phi command is saturated considering the aircraft physical constraints
     if(!(*phi_command < MAX_PHI_COMMAND && *phi_command > -MAX_PHI_COMMAND))
+            // ROS_INFO("Position Controller: SATURATED PHYSICAL CONTSTRAINTS OF AIRCRAFT PHI");
        if(*phi_command > MAX_PHI_COMMAND)
           *phi_command = MAX_PHI_COMMAND;
        else
