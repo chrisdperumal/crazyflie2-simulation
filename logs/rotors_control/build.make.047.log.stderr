@@ -1,0 +1,8 @@
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:[m[K In member function ‘[01m[Kvoid rotors_control::LQRControllerNode::UpdateController()[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:264:7:[m[K [01;31m[Kerror: [m[K‘[01m[KROSS_INFO[m[K’ was not declared in this scope; did you mean ‘[01m[KROS_INFO[m[K’?
+  264 |       [01;31m[KROSS_INFO[m[K("Rotor Velocities: [%f, %f, %f, %f]",
+      |       [01;31m[K^~~~~~~~~[m[K
+      |       [32m[KROS_INFO[m[K
+make[2]: *** [CMakeFiles/lqr_feedforward_controller_node.dir/build.make:63: CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1845: CMakeFiles/lqr_feedforward_controller_node.dir/all] Error 2
+make: *** [Makefile:130: all] Error 2

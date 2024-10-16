@@ -1,0 +1,7 @@
+MagneticField.proto: warning: Import quaternion.proto but not used.
+[01m[Kc++:[m[K [01;31m[Kfatal error: [m[KKilled signal terminated program cc1plus
+compilation terminated.
+make[2]: *** [CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/build.make:63: CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/src/gazebo_noisydepth_plugin.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:812: CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:130: all] Error 2
