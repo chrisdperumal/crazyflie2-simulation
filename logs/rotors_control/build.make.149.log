@@ -1,0 +1,86 @@
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target trajectory_msgs_generate_messages_lisp
+[  0%] Built target trajectory_msgs_generate_messages_nodejs
+[  0%] Built target mav_msgs_generate_messages_py
+[  0%] Built target nav_msgs_generate_messages_eus
+[  0%] Built target mav_msgs_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target mav_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target nav_msgs_generate_messages_lisp
+[  0%] Built target nav_msgs_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target nav_msgs_generate_messages_py
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target actionlib_msgs_generate_messages_eus
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target trajectory_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target actionlib_msgs_generate_messages_lisp
+[  0%] Built target actionlib_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target actionlib_msgs_generate_messages_cpp
+[  0%] Built target mav_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+[  0%] Built target mav_msgs_generate_messages_cpp
+[  0%] Built target actionlib_msgs_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_eus
+[  0%] Built target roscpp_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target trajectory_msgs_generate_messages_eus
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target trajectory_msgs_generate_messages_py
+[  0%] Built target nav_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  7%] Built target position_controller_v2
+[ 15%] Built target attitude_controller_v2
+[ 30%] Built target attitude_controller
+[ 30%] Built target sensfusion6
+[ 38%] Built target lqr_feedforward_controller
+[ 46%] Built target position_controller
+[ 53%] Built target crazyflie_complementary_filter
+[ 61%] Built target crazyflie_onboard_controller
+[35m[1mScanning dependencies of target lqr_feedforward_controller_node[0m
+[ 69%] Built target attitude_controller_node_v2
+[ 76%] Built target attitude_controller_node
+[ 84%] Built target position_controller_node
+[ 88%] [32mBuilding CXX object CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o[0m
+[ 96%] Built target position_controller_node_v2
+In file included from [01m[K/opt/ros/noetic/include/ros/assert.h:35[m[K,
+                 from [01m[K/opt/ros/noetic/include/ros/common.h:36[m[K,
+                 from [01m[K/opt/ros/noetic/include/ros/callback_queue_interface.h:39[m[K,
+                 from [01m[K/opt/ros/noetic/include/ros/callback_queue.h:38[m[K,
+                 from [01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.h:15[m[K,
+                 from [01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:2[m[K:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:[m[K In member function ‘[01m[Kvoid rotors_control::LQRControllerNode::UpdateController()[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:270:16:[m[K [01;35m[Kwarning: [m[Ktoo many arguments for format [[01;35m[K-Wformat-extra-args[m[K]
+  270 |       ROS_INFO([01;35m[K"Error Calculation: [%f, %f, %f, %f]"[m[K,
+      |                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:351:165:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER[m[K’
+  351 |     ::ros::console::print(filter, __rosconsole_define_location__loc.logger_, __rosconsole_define_location__loc.level_, __FILE__, __LINE__, __ROSCONSOLE_FUNCTION__, [01;36m[K__VA_ARGS__[m[K)
+      |                                                                                                                                                                     [01;36m[K^~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:390:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION[m[K’
+  390 |       [01;36m[KROSCONSOLE_PRINT_AT_LOCATION[m[K(__VA_ARGS__); \
+      |       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:575:35:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_COND[m[K’
+  575 | #define ROS_LOG(level, name, ...) [01;36m[KROS_LOG_COND[m[K(true, level, name, __VA_ARGS__)
+      |                                   [01;36m[K^~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/rosconsole/macros_generated.h:110:23:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG[m[K’
+  110 | #define ROS_INFO(...) [01;36m[KROS_LOG[m[K(::ros::console::levels::Info, ROSCONSOLE_DEFAULT_NAME, __VA_ARGS__)
+      |                       [01;36m[K^~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:270:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_INFO[m[K’
+  270 |       [01;36m[KROS_INFO[m[K("Error Calculation: [%f, %f, %f, %f]",
+      |       [01;36m[K^~~~~~~~[m[K
+[100%] [32m[1mLinking CXX executable /home/chris/catkin_ws/devel/.private/rotors_control/lib/rotors_control/lqr_feedforward_controller_node[0m
+[100%] Built target lqr_feedforward_controller_node

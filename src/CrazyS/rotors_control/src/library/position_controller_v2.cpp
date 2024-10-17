@@ -53,8 +53,8 @@
 #define MAX_PHI_COMMAND 0.7236               /* MAX PHI COMMAND [rad]*/
 #define MAX_POS_DELTA_OMEGA 1289             /* MAX POSITIVE DELTA OMEGA [PWM]*/
 #define MAX_NEG_DELTA_OMEGA -1718            /* MAX NEGATIVE DELTA OMEGA [PWM]*/
-#define SAMPLING_TIME 0.001                  /* SAMPLING TIME [s] */
-#define SAMPLING_TIME_HOVERING 0.001         /* SAMPLING TIME HOVERING*/
+#define SAMPLING_TIME 0.0001                  /* SAMPLING TIME [s] */
+#define SAMPLING_TIME_HOVERING 0.0001         /* SAMPLING TIME HOVERING*/
 // the sampling times should be the same as the frequency the loops are running
 
 namespace rotors_control
@@ -113,13 +113,8 @@ namespace rotors_control
     void PositionController::SetControllerGains()
     {
 
-        const double factor = 1.2;
-
         xy_gain_kp_ = Eigen::Vector2f(controller_parameters_.xy_gain_kp_.x(), controller_parameters_.xy_gain_kp_.y());
         xy_gain_ki_ = Eigen::Vector2f(controller_parameters_.xy_gain_ki_.x(), controller_parameters_.xy_gain_ki_.y());
-
-        xy_gain_kp_ = xy_gain_kp_ * factor;
-        xy_gain_ki_ = xy_gain_ki_ * factor;
 
         attitude_gain_kp_ = Eigen::Vector2f(controller_parameters_.attitude_gain_kp_.x(), controller_parameters_.attitude_gain_kp_.y());
         attitude_gain_ki_ = Eigen::Vector2f(controller_parameters_.attitude_gain_ki_.x(), controller_parameters_.attitude_gain_ki_.y());
@@ -130,7 +125,7 @@ namespace rotors_control
         yaw_gain_kp_ = controller_parameters_.yaw_gain_kp_;
         yaw_gain_ki_ = controller_parameters_.yaw_gain_ki_;
 
-        hovering_gain_kp_ = controller_parameters_.hovering_gain_kp_ * factor;
+        hovering_gain_kp_ = controller_parameters_.hovering_gain_kp_;
         hovering_gain_ki_ = controller_parameters_.hovering_gain_ki_;
         hovering_gain_kd_ = controller_parameters_.hovering_gain_kd_;
     }

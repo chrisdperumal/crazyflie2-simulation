@@ -50,8 +50,8 @@
 #define MAX_PHI_COMMAND 0.7236               /* MAX PHI COMMAND [rad]*/
 #define MAX_POS_DELTA_OMEGA 1289             /* MAX POSITIVE DELTA OMEGA [PWM]*/
 #define MAX_NEG_DELTA_OMEGA -1718            /* MAX NEGATIVE DELTA OMEGA [PWM]*/
-#define SAMPLING_TIME 0.0001                  /* SAMPLING TIME [s] */
-#define SAMPLING_TIME_HOVERING 0.0001         /* SAMPLING TIME HOVERING*/
+#define SAMPLING_TIME 0.0001                 /* SAMPLING TIME [s] */
+#define SAMPLING_TIME_HOVERING 0.0001        /* SAMPLING TIME HOVERING*/
 // the sampling times should be the same as the frequency the loops are running
 
 namespace rotors_control
@@ -109,8 +109,6 @@ namespace rotors_control
     // Controller gains are entered into local global variables
     void AttitudeController::SetControllerGains()
     {
-
-        const double factor = 2;
 
         xy_gain_kp_ = Eigen::Vector2f(controller_parameters_.xy_gain_kp_.x(), controller_parameters_.xy_gain_kp_.y());
         xy_gain_ki_ = Eigen::Vector2f(controller_parameters_.xy_gain_ki_.x(), controller_parameters_.xy_gain_ki_.y());

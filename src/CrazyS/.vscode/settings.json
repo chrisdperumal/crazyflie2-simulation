@@ -69,6 +69,7 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "bit": "cpp",
-        "core": "cpp"
+        "core": "cpp",
+        "*.ipp": "cpp"
     }
 }

@@ -1,0 +1,7 @@
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_gazebo/src/nodes/hovering_eight_v2.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_gazebo/src/nodes/hovering_eight_v2.cpp:116:27:[m[K [01;31m[Kerror: [m[K‘[01m[Klast_info_time[m[K’ was not declared in this scope
+  116 |       if ((current_time - [01;31m[Klast_info_time[m[K).toSec() >= 1.0)
+      |                           [01;31m[K^~~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/hovering_eight_v2.dir/build.make:63: CMakeFiles/hovering_eight_v2.dir/src/nodes/hovering_eight_v2.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1669: CMakeFiles/hovering_eight_v2.dir/all] Error 2
+make: *** [Makefile:130: all] Error 2

@@ -90,12 +90,14 @@ int main(int argc, char **argv)
   // Compute waypoints using the provided trajectory
   double t_start = 0.0;
   double t_end = 4 * M_PI; // Duration of the trajectory in seconds
-  double dt = 0.2;         // Time step (adjust for smoothness)
+  double dt = 0.02;        // Time step (adjust for smoothness)
 
   std::vector<Eigen::Vector3d> waypoints = computeWaypoints(t_start, t_end, dt);
 
-  double threshold = 0.05; // Distance threshold to consider the drone has reached the waypoint
+  double threshold = 0.025; // Distance threshold to consider the drone has reached the waypoint
   double desired_yaw = 0.0;
+
+  ROS_INFO("Total waypoints: %ld", waypoints.size());
 
   for (int i = 0; i <= waypoints.size(); i++)
   {
@@ -109,24 +111,22 @@ int main(int argc, char **argv)
 
     publishTrajectory(trajectory_pub, desired_position, desired_yaw);
 
+    ros::Time last_info_time = ros::Time::now();
+
     while (ros::ok() && !isCloseEnough(desired_position, threshold))
     {
       ros::spinOnce();
-      ROS_INFO("Current position: [x: %f, y: %f, z: %f]", current_position.x(), current_position.y(), current_position.z());
-      std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+      ros::Time current_time = ros::Time::now();
+      if ((current_time - last_info_time).toSec() >= 2.0)
+      {
+        ROS_INFO("Current position: [x: %f, y: %f, z: %f]", current_position.x(), current_position.y(), current_position.z());
+        last_info_time = current_time; // Update the last info time
+      }
+      std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
 
-    publishTrajectory(trajectory_pub, desired_position, desired_yaw);
     ROS_INFO("WAYPOINT %d REACHED!", i + 1);
-    // ros::Time start_hover = ros::Time::now();
-    // ros::Duration hover_duration(5.0);
-    // while (ros::Time::now() - start_hover < hover_duration)
-    // {
-    //   ros::spinOnce();
-    //   ROS_INFO("Current position during hover: [x: %f, y: %f, z: %f]", current_position.x(), current_position.y(), current_position.z());
-    //   std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    // }
-  }
+    }
 
   ROS_INFO("SHUTDOWN ROS! ");
   ros::shutdown();

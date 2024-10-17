@@ -1,0 +1,7 @@
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/lqr_feedforward_controller.cpp:[m[K In constructor ‘[01m[Krotors_control::LQRFeedforwardController::LQRFeedforwardController()[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/library/lqr_feedforward_controller.cpp:86:14:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Knext_state[m[K’
+   86 |       state_.[01;31m[Knext_state[m[K = Eigen::VectorXd::Zero(12);
+      |              [01;31m[K^~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/lqr_feedforward_controller.dir/build.make:63: CMakeFiles/lqr_feedforward_controller.dir/src/library/lqr_feedforward_controller.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1773: CMakeFiles/lqr_feedforward_controller.dir/all] Error 2
+make: *** [Makefile:130: all] Error 2

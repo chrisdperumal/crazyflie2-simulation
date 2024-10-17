@@ -107,6 +107,7 @@ public:
             EigenOdometry odometry_;
             sensorData_t sensors_;
             state_t state_;
+            Eigen::VectorXd next_state_;
 
             void RateController(double* delta_phi, double* delta_theta, double* delta_psi, double p_command, double q_command, double r_command);
             void LQRFeedforwardControllerFunction(double* p_command, double* q_command, double theta_command, double phi_command);
@@ -117,6 +118,7 @@ public:
             void ControlMixer(double thrust, double delta_phi, double delta_theta, double delta_psi, 
                 double* PWM_1, double* PWM_2, double* PWM_3, double* PWM_4);
             void Quaternion2Euler(double* roll, double* pitch, double* yaw) const;
+            void SetNextState(const Eigen::VectorXd& next_state);
 
 };
 

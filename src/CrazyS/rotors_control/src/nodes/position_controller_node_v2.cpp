@@ -273,7 +273,7 @@ int main(int argc, char** argv){
 
     rotors_control::PositionControllerNode position_controller_node;
 
-    double frequency=100;
+    double frequency=1000;
     ros::Rate rate(frequency);  // 10 Hz
 
     while (ros::ok()) {

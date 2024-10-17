@@ -1,0 +1,112 @@
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:[m[K In member function ‘[01m[Kvoid rotors_control::LQRControllerNode::UpdateController()[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:204:69:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[KpositionW[m[K’; did you mean ‘[01m[Kposition_W[m[K’?
+  204 |       x_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[KpositionW[m[K[0];
+      |                                                                     [01;31m[K^~~~~~~~~[m[K
+      |                                                                     [32m[Kposition_W[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:205:69:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[KpositionW[m[K’; did you mean ‘[01m[Kposition_W[m[K’?
+  205 |       y_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[KpositionW[m[K[1];
+      |                                                                     [01;31m[K^~~~~~~~~[m[K
+      |                                                                     [32m[Kposition_W[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:206:69:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[KpositionW[m[K’; did you mean ‘[01m[Kposition_W[m[K’?
+  206 |       z_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[KpositionW[m[K[2];
+      |                                                                     [01;31m[K^~~~~~~~~[m[K
+      |                                                                     [32m[Kposition_W[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:208:70:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[KvelocityW[m[K’; did you mean ‘[01m[Kvelocity_W[m[K’?
+  208 |       vx_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[KvelocityW[m[K[0];
+      |                                                                      [01;31m[K^~~~~~~~~[m[K
+      |                                                                      [32m[Kvelocity_W[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:209:70:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[KvelocityW[m[K’; did you mean ‘[01m[Kvelocity_W[m[K’?
+  209 |       vy_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[KvelocityW[m[K[1];
+      |                                                                      [01;31m[K^~~~~~~~~[m[K
+      |                                                                      [32m[Kvelocity_W[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:210:70:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[KvelocityW[m[K’; did you mean ‘[01m[Kvelocity_W[m[K’?
+  210 |       vz_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[KvelocityW[m[K[2];
+      |                                                                      [01;31m[K^~~~~~~~~[m[K
+      |                                                                      [32m[Kvelocity_W[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:212:71:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[Korientation[m[K’; did you mean ‘[01m[Korientation_W_B[m[K’?
+  212 |       phi_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[Korientation[m[K.x();
+      |                                                                       [01;31m[K^~~~~~~~~~~[m[K
+      |                                                                       [32m[Korientation_W_B[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:213:73:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[Korientation[m[K’; did you mean ‘[01m[Korientation_W_B[m[K’?
+  213 |       theta_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[Korientation[m[K.y();
+      |                                                                         [01;31m[K^~~~~~~~~~~[m[K
+      |                                                                         [32m[Korientation_W_B[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:214:71:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[Korientation[m[K’; did you mean ‘[01m[Korientation_W_B[m[K’?
+  214 |       psi_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[Korientation[m[K.z();
+      |                                                                       [01;31m[K^~~~~~~~~~~[m[K
+      |                                                                       [32m[Korientation_W_B[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:216:69:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[Kangular_velocity[m[K’; did you mean ‘[01m[Kangular_velocity_W[m[K’?
+  216 |       p_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[Kangular_velocity[m[K.x();
+      |                                                                     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+      |                                                                     [32m[Kangular_velocity_W[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:217:69:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[Kangular_velocity[m[K’; did you mean ‘[01m[Kangular_velocity_W[m[K’?
+  217 |       q_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[Kangular_velocity[m[K.y();
+      |                                                                     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+      |                                                                     [32m[Kangular_velocity_W[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:218:69:[m[K [01;31m[Kerror: [m[K‘[01m[Kstruct mav_msgs::EigenTrajectoryPoint[m[K’ has no member named ‘[01m[Kangular_velocity[m[K’; did you mean ‘[01m[Kangular_velocity_W[m[K’?
+  218 |       r_reference = lqr_feedforward_controller_.command_trajectory_.[01;31m[Kangular_velocity[m[K.z();
+      |                                                                     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+      |                                                                     [32m[Kangular_velocity_W[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:224:68:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kvelocity[m[K’
+  224 |       vx_error = vx_reference - lqr_feedforward_controller_.state_.[01;31m[Kvelocity[m[K.x;
+      |                                                                    [01;31m[K^~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:225:68:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kvelocity[m[K’
+  225 |       vy_error = vy_reference - lqr_feedforward_controller_.state_.[01;31m[Kvelocity[m[K.y;
+      |                                                                    [01;31m[K^~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:226:68:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kvelocity[m[K’
+  226 |       vz_error = vz_reference - lqr_feedforward_controller_.state_.[01;31m[Kvelocity[m[K.z;
+      |                                                                    [01;31m[K^~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:228:70:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Korientation[m[K’
+  228 |       phi_error = phi_reference - lqr_feedforward_controller_.state_.[01;31m[Korientation[m[K.x();
+      |                                                                      [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:229:74:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Korientation[m[K’
+  229 |       theta_error = theta_reference - lqr_feedforward_controller_.state_.[01;31m[Korientation[m[K.y();
+      |                                                                          [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:230:70:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Korientation[m[K’
+  230 |       psi_error = psi_reference - lqr_feedforward_controller_.state_.[01;31m[Korientation[m[K.z();
+      |                                                                      [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:232:66:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kangular_velocity[m[K’; did you mean ‘[01m[KangularVelocity[m[K’?
+  232 |       p_error = p_reference - lqr_feedforward_controller_.state_.[01;31m[Kangular_velocity[m[K.x;
+      |                                                                  [01;31m[K^~~~~~~~~~~~~~~~[m[K
+      |                                                                  [32m[KangularVelocity[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:233:66:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kangular_velocity[m[K’; did you mean ‘[01m[KangularVelocity[m[K’?
+  233 |       q_error = q_reference - lqr_feedforward_controller_.state_.[01;31m[Kangular_velocity[m[K.y;
+      |                                                                  [01;31m[K^~~~~~~~~~~~~~~~[m[K
+      |                                                                  [32m[KangularVelocity[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:234:66:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kangular_velocity[m[K’; did you mean ‘[01m[KangularVelocity[m[K’?
+  234 |       r_error = r_reference - lqr_feedforward_controller_.state_.[01;31m[Kangular_velocity[m[K.z;
+      |                                                                  [01;31m[K^~~~~~~~~~~~~~~~[m[K
+      |                                                                  [32m[KangularVelocity[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:239:60:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kvelocity[m[K’
+  239 |       current_state_ << lqr_feedforward_controller_.state_.[01;31m[Kvelocity[m[K.x, lqr_feedforward_controller_.state_.position.x,
+      |                                                            [01;31m[K^~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:240:46:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kvelocity[m[K’
+  240 |           lqr_feedforward_controller_.state_.[01;31m[Kvelocity[m[K.y, lqr_feedforward_controller_.state_.position.y,
+      |                                              [01;31m[K^~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:241:46:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kvelocity[m[K’
+  241 |           lqr_feedforward_controller_.state_.[01;31m[Kvelocity[m[K.z, lqr_feedforward_controller_.state_.position.z,
+      |                                              [01;31m[K^~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:242:46:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Korientation[m[K’
+  242 |           lqr_feedforward_controller_.state_.[01;31m[Korientation[m[K.x(), lqr_feedforward_controller_.state_.orientation.y(),
+      |                                              [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:242:98:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Korientation[m[K’
+  242 |           lqr_feedforward_controller_.state_.orientation.x(), lqr_feedforward_controller_.state_.[01;31m[Korientation[m[K.y(),
+      |                                                                                                  [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:243:46:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Korientation[m[K’
+  243 |           lqr_feedforward_controller_.state_.[01;31m[Korientation[m[K.z(), lqr_feedforward_controller_.state_.angular_velocity.x,
+      |                                              [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:243:98:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kangular_velocity[m[K’; did you mean ‘[01m[KangularVelocity[m[K’?
+  243 |           lqr_feedforward_controller_.state_.orientation.z(), lqr_feedforward_controller_.state_.[01;31m[Kangular_velocity[m[K.x,
+      |                                                                                                  [01;31m[K^~~~~~~~~~~~~~~~[m[K
+      |                                                                                                  [32m[KangularVelocity[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:244:46:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kangular_velocity[m[K’; did you mean ‘[01m[KangularVelocity[m[K’?
+  244 |           lqr_feedforward_controller_.state_.[01;31m[Kangular_velocity[m[K.y, lqr_feedforward_controller_.state_.angular_velocity.z;
+      |                                              [01;31m[K^~~~~~~~~~~~~~~~[m[K
+      |                                              [32m[KangularVelocity[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:244:101:[m[K [01;31m[Kerror: [m[K‘[01m[Krotors_control::state_t[m[K’ {aka ‘[01m[Kstruct rotors_control::state_s[m[K’} has no member named ‘[01m[Kangular_velocity[m[K’; did you mean ‘[01m[KangularVelocity[m[K’?
+  244 |           lqr_feedforward_controller_.state_.angular_velocity.y, lqr_feedforward_controller_.state_.[01;31m[Kangular_velocity[m[K.z;
+      |                                                                                                     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+      |                                                                                                     [32m[KangularVelocity[m[K
+make[2]: *** [CMakeFiles/lqr_feedforward_controller_node.dir/build.make:63: CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1845: CMakeFiles/lqr_feedforward_controller_node.dir/all] Error 2
+make: *** [Makefile:130: all] Error 2

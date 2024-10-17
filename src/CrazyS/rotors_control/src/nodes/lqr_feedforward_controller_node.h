@@ -26,9 +26,6 @@ namespace rotors_control
 
     class LQRControllerNode
     {
-    private:
-        Eigen::VectorXd desired_state_;
-        Eigen::VectorXd current_state_;
 
     public:
         LQRControllerNode();
@@ -39,8 +36,6 @@ namespace rotors_control
         void OdometryCallback(const nav_msgs::OdometryConstPtr &msg);
         void UpdateController();
         void geometryCallback(const mav_msgs::RateThrustConstPtr &rate_thrust);
-        void setCurrentState(const Eigen::VectorXd &current_state) { current_state_ = current_state; }
-        void setDesiredState(const Eigen::VectorXd &desired_state) { desired_state_ = desired_state; }
         bool waypointHasBeenPublished_ = false;
         ros::Subscriber cmd_multi_dof_joint_trajectory_sub_;
         ros::Subscriber odometry_sub_;
@@ -50,7 +45,7 @@ namespace rotors_control
         mav_msgs::EigenTrajectoryPointDeque commands_;
         std::deque<ros::Duration> command_waiting_times_;
 
-        LQRFeedforwardController lqr_feedforward_controller_; ;
+        LQRFeedforwardController lqr_feedforward_controller_;
 
         mav_msgs::RateThrust last_rate_thrust_;
     };

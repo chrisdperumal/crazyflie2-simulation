@@ -1,0 +1,40 @@
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:[m[K In member function ‘[01m[Kvoid rotors_control::LQRControllerNode::UpdateController()[m[K’:
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:205:7:[m[K [01;31m[Kerror: [m[K‘[01m[Kattitude_controller_[m[K’ was not declared in this scope
+  205 |       [01;31m[Kattitude_controller_[m[K.control_t_.thrust = last_rate_thrust_.thrust.x;
+      |       [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:209:14:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kdouble theta_command[m[K’
+  209 |       double [01;31m[Ktheta_command[m[K, phi_command;
+      |              [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:204:14:[m[K [01;36m[Knote: [m[K‘[01m[Kdouble theta_command[m[K’ previously declared here
+  204 |       double [01;36m[Ktheta_command[m[K, phi_command;
+      |              [01;36m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:209:29:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kdouble phi_command[m[K’
+  209 |       double theta_command, [01;31m[Kphi_command[m[K;
+      |                             [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:204:29:[m[K [01;36m[Knote: [m[K‘[01m[Kdouble phi_command[m[K’ previously declared here
+  204 |       double theta_command, [01;36m[Kphi_command[m[K;
+      |                             [01;36m[K^~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:226:56:[m[K [01;31m[Kerror: [m[K‘[01m[Kp_command[m[K’ was not declared in this scope; did you mean ‘[01m[Kphi_command[m[K’?
+  226 |       attitude_controller_.AttitudeControllerFunction(&[01;31m[Kp_command[m[K, &q_command, theta_command, phi_command);
+      |                                                        [01;31m[K^~~~~~~~~[m[K
+      |                                                        [32m[Kphi_command[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:226:68:[m[K [01;31m[Kerror: [m[K‘[01m[Kq_command[m[K’ was not declared in this scope; did you mean ‘[01m[Kphi_command[m[K’?
+  226 |       attitude_controller_.AttitudeControllerFunction(&p_command, &[01;31m[Kq_command[m[K, theta_command, phi_command);
+      |                                                                    [01;31m[K^~~~~~~~~[m[K
+      |                                                                    [32m[Kphi_command[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:229:51:[m[K [01;31m[Kerror: [m[K‘[01m[Kr_command[m[K’ was not declared in this scope; did you mean ‘[01m[Kphi_command[m[K’?
+  229 |       attitude_controller_.YawPositionController(&[01;31m[Kr_command[m[K);
+      |                                                   [01;31m[K^~~~~~~~~[m[K
+      |                                                   [32m[Kphi_command[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:232:44:[m[K [01;31m[Kerror: [m[K‘[01m[Kdelta_phi[m[K’ was not declared in this scope
+  232 |       attitude_controller_.RateController(&[01;31m[Kdelta_phi[m[K, &delta_theta, &delta_psi, p_command, q_command, r_command);
+      |                                            [01;31m[K^~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:232:56:[m[K [01;31m[Kerror: [m[K‘[01m[Kdelta_theta[m[K’ was not declared in this scope
+  232 |       attitude_controller_.RateController(&delta_phi, &[01;31m[Kdelta_theta[m[K, &delta_psi, p_command, q_command, r_command);
+      |                                                        [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/chris/catkin_ws/src/CrazyS/rotors_control/src/nodes/lqr_feedforward_controller_node.cpp:232:70:[m[K [01;31m[Kerror: [m[K‘[01m[Kdelta_psi[m[K’ was not declared in this scope
+  232 |       attitude_controller_.RateController(&delta_phi, &delta_theta, &[01;31m[Kdelta_psi[m[K, p_command, q_command, r_command);
+      |                                                                      [01;31m[K^~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/lqr_feedforward_controller_node.dir/build.make:63: CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1845: CMakeFiles/lqr_feedforward_controller_node.dir/all] Error 2
+make: *** [Makefile:130: all] Error 2

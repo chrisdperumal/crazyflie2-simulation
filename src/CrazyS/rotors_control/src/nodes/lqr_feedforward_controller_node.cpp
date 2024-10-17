@@ -12,6 +12,8 @@
 #include "rotors_control/stabilizer_types.h"
 // #include "rotors_control/crazyflie_complementary_filter.h"
 
+#define GRAVITATIONAL_FORCE 9.81 * 0.027; // 0.027 is the mass of the drone in Kg
+
 namespace rotors_control
 {
 
@@ -35,8 +37,6 @@ namespace rotors_control
 
     ros::NodeHandle nh;
     ros::NodeHandle pnh_node("~");
-    current_state_ = Eigen::VectorXd::Zero(12);
-    desired_state_ = Eigen::VectorXd::Zero(12);
 
     InitializeParams();
 
@@ -80,14 +80,6 @@ namespace rotors_control
              eigen_reference.position_W[1], eigen_reference.position_W[2]);
 
     // ROS_INFO_STREAM("Eigen Reference: Position [" << eigen_reference.transpose() << "], ");
-
-    Eigen::VectorXd desired_state(12);
-    desired_state << eigen_reference.velocity_W[0], eigen_reference.position_W[0],
-        eigen_reference.velocity_W[1], eigen_reference.position_W[1],
-        eigen_reference.velocity_W[2], eigen_reference.position_W[2],
-        0, 0, 0, 0, 0, 0; // Orientation and angular velocity
-
-    setDesiredState(desired_state);
 
     // We can trigger the first command immediately.
     lqr_feedforward_controller_.SetTrajectoryPoint(eigen_reference);
@@ -195,76 +187,69 @@ namespace rotors_control
 
   void LQRControllerNode::OdometryCallback(const nav_msgs::OdometryConstPtr &odometry_msg)
   {
+    EigenOdometry odometry;
+    eigenOdometryFromMsg(odometry_msg, &odometry);
 
-    // Extract position (x, y, z)
-    Eigen::Vector3d position(odometry_msg->pose.pose.position.x,
-                             odometry_msg->pose.pose.position.y,
-                             odometry_msg->pose.pose.position.z);
-
-    // Extract linear velocity (x_dot, y_dot, z_dot)
-    Eigen::Vector3d velocity(odometry_msg->twist.twist.linear.x,
-                             odometry_msg->twist.twist.linear.y,
-                             odometry_msg->twist.twist.linear.z);
-
-    // Extract orientation (quaternion -> roll, pitch, yaw)
-    Eigen::Quaterniond orientation(odometry_msg->pose.pose.orientation.w,
-                                   odometry_msg->pose.pose.orientation.x,
-                                   odometry_msg->pose.pose.orientation.y,
-                                   odometry_msg->pose.pose.orientation.z);
-
-    Eigen::Vector3d euler_angles = orientation.toRotationMatrix().eulerAngles(0, 1, 2); // Roll, Pitch, Yaw
-
-    // Extract angular velocity (p, q, r)
-    Eigen::Vector3d angular_velocity(odometry_msg->twist.twist.angular.x,
-                                     odometry_msg->twist.twist.angular.y,
-                                     odometry_msg->twist.twist.angular.z);
-
-    // Update the current state vector
-    current_state_ << velocity[0], position[0], velocity[1], position[1], velocity[2], position[2],
-        euler_angles[0], euler_angles[1], euler_angles[2], angular_velocity[0], angular_velocity[1], angular_velocity[2];
-
-    setCurrentState(current_state_);
-
-    ROS_INFO("Current state updated: Position [%f, %f, %f]",
-             position(0), position(1), position(2));
+    lqr_feedforward_controller_.SetCurrentStateFromOdometry(odometry);
   }
 
   void LQRControllerNode::UpdateController()
   {
-
     if (waypointHasBeenPublished_)
     {
       EigenOdometry odometry;
-
       Eigen::Vector4d ref_rotor_velocities;
 
       // Compute control signals directly
-      double thrust;
       double delta_phi, delta_theta, delta_psi;
+      double p_command, q_command, r_command;
 
-      Eigen::VectorXd control_input = -K * (current_state_ - desired_state_);
-      control_input(0) += 0.6 * 9.81; // Add gravitational force
+      double theta_command, phi_command;
+      lqr_feedforward_controller_.control_t_.thrust = last_rate_thrust_.thrust.x;
+      theta_command = last_rate_thrust_.thrust.y;
+      phi_command = last_rate_thrust_.thrust.z;
 
-      ROS_INFO("Control Input: [%f, %f, %f, %f]",
-               ref_rotor_velocities(0), ref_rotor_velocities(1), ref_rotor_velocities(2), ref_rotor_velocities(3));
+      // Eigen::VectorXd error = current_state_ - desired_state_;
+      // Eigen::VectorXd control_input = -K * error;
 
-      // Map the control input to the appropriate variables
-      thrust = control_input(0);      // Thrust command
-      delta_phi = control_input(1);   // Roll rate command
-      delta_theta = control_input(2); // Pitch rate command
-      delta_psi = control_input(3);   // Yaw rate command
+      // control_input(0) += GRAVITATIONAL_FORCE; // Add gravitational force
+
+      // Map the control input to thrust and angular rate commands
+      // thrust = control_input(0);      // Thrust command
+      // delta_phi = control_input(1);   // Roll rate command
+      // delta_theta = control_input(2); // Pitch rate command
+      // delta_psi = control_input(3);   // Yaw rate command
+
+      //We need tos pecify hovering and xy controller because these are ususally carried out in position controller
+
+      //Hovering Controller
+      lqr_feedforward_controller_.HoveringController(&lqr_feedforward_controller_.control_t_.thrust);
+
+      //XY Controller
+      lqr_feedforward_controller_.XYController(&theta_command, &phi_command);
+
+      // Compute Attitude Controller
+      lqr_feedforward_controller_.LQRFeedforwardControllerFunction(&p_command, &q_command, theta_command, phi_command);
+
+      // Compute Yaw Position Controller
+      lqr_feedforward_controller_.YawPositionController(&r_command);
+
+      // Compute Rate Controller
+      lqr_feedforward_controller_.RateController(&delta_phi, &delta_theta, &delta_psi, p_command, q_command, r_command);
 
       // Compute Control Mixer
       double PWM_1, PWM_2, PWM_3, PWM_4;
-      lqr_feedforward_controller_.ControlMixer(thrust, delta_phi, delta_theta, delta_psi, &PWM_1, &PWM_2, &PWM_3, &PWM_4);
+      lqr_feedforward_controller_.ControlMixer(lqr_feedforward_controller_.control_t_.thrust, delta_phi, delta_theta, delta_psi, &PWM_1, &PWM_2, &PWM_3, &PWM_4);
 
       // Calculate Rotor Velocities
-      lqr_feedforward_controller_.CalculateRotorVelocities(&ref_rotor_velocities, thrust, delta_phi, delta_theta, delta_psi);
+      lqr_feedforward_controller_.CalculateRotorVelocities(&ref_rotor_velocities, PWM_1, PWM_2, PWM_3, PWM_4);
 
+      // Prepare the actuator message
       mav_msgs::ActuatorsPtr actuator_msg(new mav_msgs::Actuators);
       actuator_msg->angular_velocities.clear();
       for (int i = 0; i < ref_rotor_velocities.size(); i++)
         actuator_msg->angular_velocities.push_back(ref_rotor_velocities[i]);
+
       ROS_INFO("PWM: [%f, %f, %f, %f]", PWM_1, PWM_2, PWM_3, PWM_4);
 
       actuator_msg->header.stamp = ros::Time::now();
@@ -278,13 +263,8 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "lqr_feedforward_controller_node");
   rotors_control::LQRControllerNode lqr_controller_node;
-  // Eigen::VectorXd desired_state(12);
-  // desired_state << 0, 0, 0, 0, 0, 1, // Position and velocity in x, y, z
-  //     0, 0, 0, 0, 0, 0;              // Orientation and angular velocity
 
   ros::Rate rate(100); // 100 Hz
-
-  // lqr_controller_node.setDesiredState(desired_state);
 
   while (ros::ok())
   {
