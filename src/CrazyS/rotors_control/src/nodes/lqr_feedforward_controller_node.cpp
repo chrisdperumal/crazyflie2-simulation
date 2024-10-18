@@ -199,6 +199,7 @@ namespace rotors_control
     {
       EigenOdometry odometry;
       Eigen::Vector4d ref_rotor_velocities;
+      Eigen::Vector4d control_input(4);
 
       // Compute control signals directly
       double delta_phi, delta_theta, delta_psi;
@@ -209,33 +210,33 @@ namespace rotors_control
       theta_command = last_rate_thrust_.thrust.y;
       phi_command = last_rate_thrust_.thrust.z;
 
-      // Eigen::VectorXd error = current_state_ - desired_state_;
-      // Eigen::VectorXd control_input = -K * error;
-
-      // control_input(0) += GRAVITATIONAL_FORCE; // Add gravitational force
-
-      // Map the control input to thrust and angular rate commands
-      // thrust = control_input(0);      // Thrust command
-      // delta_phi = control_input(1);   // Roll rate command
-      // delta_theta = control_input(2); // Pitch rate command
-      // delta_psi = control_input(3);   // Yaw rate command
-
-      //We need tos pecify hovering and xy controller because these are ususally carried out in position controller
+      //We need to specify hovering and xy controller because these are ususally carried out in position controller
 
       //Hovering Controller
-      lqr_feedforward_controller_.HoveringController(&lqr_feedforward_controller_.control_t_.thrust);
+      // lqr_feedforward_controller_.HoveringController(&lqr_feedforward_controller_.control_t_.thrust);
 
       //XY Controller
-      lqr_feedforward_controller_.XYController(&theta_command, &phi_command);
+      // lqr_feedforward_controller_.XYController(&theta_command, &phi_command);
 
       // Compute Attitude Controller
-      lqr_feedforward_controller_.LQRFeedforwardControllerFunction(&p_command, &q_command, theta_command, phi_command);
+      // lqr_feedforward_controller_.LQRFeedforwardControllerFunction(&p_command, &q_command, theta_command, phi_command);
+      ROS_INFO("Old Thrust: %f", lqr_feedforward_controller_.control_t_.thrust);
 
       // Compute Yaw Position Controller
-      lqr_feedforward_controller_.YawPositionController(&r_command);
+      // lqr_feedforward_controller_.YawPositionController(&r_command);
 
       // Compute Rate Controller
-      lqr_feedforward_controller_.RateController(&delta_phi, &delta_theta, &delta_psi, p_command, q_command, r_command);
+      // lqr_feedforward_controller_.RateController(&delta_phi, &delta_theta, &delta_psi, p_command, q_command, r_command);
+
+      // Call my created function to update the controller with LQR and Feedforward
+      control_input = lqr_feedforward_controller_.UpdateControllerWithLQR();
+
+      // Set values from control_input to the thrust, theta, psi, etc.
+      lqr_feedforward_controller_.control_t_.thrust = control_input(0);
+      delta_phi = control_input(1);
+      delta_theta = control_input(2);
+      delta_psi = control_input(3);
+      ROS_INFO("New Thrust: %f", lqr_feedforward_controller_.control_t_.thrust);
 
       // Compute Control Mixer
       double PWM_1, PWM_2, PWM_3, PWM_4;

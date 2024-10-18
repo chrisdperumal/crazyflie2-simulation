@@ -33,10 +33,12 @@
 #define MAX_NEG_DELTA_OMEGA -1718            /* MAX NEGATIVE DELTA OMEGA [PWM]*/
 #define SAMPLING_TIME 0.001                  /* SAMPLING TIME [s] */
 #define SAMPLING_TIME_HOVERING 0.001         /* SAMPLING TIME HOVERING*/
-// the sampling times should be the same as the frequency the loops are running
+                                             // the sampling times should be the same as the frequency the loops are running
+#define GRAVITATIONAL_FORCE 9.81 * 0.027;    // 0.027 is the mass of the drone in Kg
 
 namespace rotors_control
 {
+    Eigen::Matrix<double, 4, 12> K_;
 
     LQRFeedforwardController::LQRFeedforwardController()
         : controller_active_(false),
@@ -84,19 +86,15 @@ namespace rotors_control
         state_.attitudeQuaternion.z = 0; // Quaternion z
         state_.attitudeQuaternion.w = 0; // Quaternion w
 
-        next_state_ = Eigen::VectorXd::Zero(12);
-    }
-
-    void LQRFeedforwardController::SetNextState(const Eigen::VectorXd &next_state)
-    {
-        if (next_state_.size() == next_state.size())
-        {
-            next_state_ = next_state;
-        }
-        else
-        {
-            ROS_ERROR("Size of the next state vector does not match the expected size.");
-        }
+        // Initialize the K matrix
+        K_ << 3.34346154e-20, 9.82008020e-20, 5.62063822e-20, 1.22657644e-19, -1.88597448e-02, -6.58666618e-03,
+            8.69525627e-21, 1.00150277e-19, -9.88396508e-21, -6.82907040e-20, 9.07692670e-20, 7.19431089e-20,
+            1.09427230e-18, 2.02425131e-18, 4.84821958e-04, 1.04167886e-03, 1.92338800e-16, 1.08067201e-16,
+            2.08020229e-04, 1.28298213e-03, -4.03432595e-19, -1.29781499e-18, 7.82638971e-20, -5.62365530e-18,
+            -6.81956991e-04, -1.23527414e-03, -7.99166140e-19, 4.99589885e-19, 2.14119721e-18, 3.84185385e-18,
+            -1.56832241e-19, -2.89601305e-19, 2.36402264e-04, 1.66355887e-03, -4.56419088e-20, 8.77916357e-19,
+            2.10693953e-19, 1.07500827e-18, 2.33324996e-18, 6.66643592e-18, 1.21402992e-16, 2.57256807e-17,
+            3.46153349e-19, 3.32226906e-18, -1.72258166e-20, -3.87826323e-20, 2.00489708e-04, 6.74024195e-04;
     }
 
     LQRFeedforwardController::~LQRFeedforwardController() {}
@@ -122,6 +120,48 @@ namespace rotors_control
         hovering_gain_kd_ = controller_parameters_.hovering_gain_kd_;
     }
 
+    Eigen::VectorXd LQRFeedforwardController::UpdateControllerWithLQR()
+    {
+        Eigen::VectorXd current_state(12);
+        Eigen::VectorXd desired_state(12);
+        Eigen::VectorXd error(12);
+
+        current_state << state_.linearVelocity.x,           // \dot{p}_x
+            state_.position.x,                              // p_x
+            state_.linearVelocity.y,                        // \dot{p}_y
+            state_.position.y,                              // p_y
+            state_.linearVelocity.z,                        // \dot{p}_z
+            state_.position.z,                              // p_z
+            state_.angularVelocity.x,                       // \dot{\phi}
+            state_.attitude.roll,                           // \phi
+            state_.angularVelocity.y,                       // \dot{\theta}
+            state_.attitude.pitch,                          // \theta
+            state_.angularVelocity.z,                       // \dot{\psi}
+            state_.attitude.yaw;                            // \psi
+        desired_state << command_trajectory_.velocity_W[0], // \dot{p}_x
+            command_trajectory_.position_W[0],              // p_x
+            command_trajectory_.velocity_W[1],              // \dot{p}_y
+            command_trajectory_.position_W[1],              // p_y
+            command_trajectory_.velocity_W[2],              // \dot{p}_z
+            command_trajectory_.position_W[2],              // p_z
+            command_trajectory_.angular_velocity_W[0],      // \dot{\phi}
+            command_trajectory_.orientation_W_B.x(),        // \phi
+            command_trajectory_.angular_velocity_W[1],      // \dot{\theta}
+            command_trajectory_.orientation_W_B.y(),        // \theta
+            command_trajectory_.angular_velocity_W[2],      // \dot{\psi}
+            command_trajectory_.orientation_W_B.z();        // \psi
+
+        ROS_INFO_STREAM("Current State: " << current_state(1) << ", " << current_state(3) << ", " << current_state(5));
+
+        error = current_state - desired_state;
+        ROS_INFO_STREAM("Error: " << error(1) << ", " << error(3) << ", " << error(5));
+
+        Eigen::VectorXd control_input = -K_ * error;
+
+        control_input(0) += GRAVITATIONAL_FORCE; // Add gravitational force
+        return control_input;
+    }
+
     void LQRFeedforwardController::SetTrajectoryPoint(const mav_msgs::EigenTrajectoryPoint &command_trajectory)
     {
         command_trajectory_ = command_trajectory;
@@ -135,14 +175,10 @@ namespace rotors_control
 
         double z_error, z_reference, dot_zeta;
         z_reference = command_trajectory_.position_W[2];
-        ROS_INFO("hey");
-        ROS_INFO("z reference from command_trajectory_.position_W[2] %f", z_reference);
 
         // the state_.position.z is not updated. always 0.
         z_error = z_reference - state_.position.z;
-        ROS_INFO("zstate position  %f", state_.position.z);
 
-        ROS_INFO("z error from command_trajectory_.position_W[2] %f", z_error);
         // Velocity along z-axis from body to inertial frame
         double roll, pitch, yaw;
         Quaternion2Euler(&roll, &pitch, &yaw);
