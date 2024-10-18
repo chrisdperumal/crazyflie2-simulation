@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -std=c++11 -O3 -DNDEBUG  -shared -Wl,-soname,libposition_controller_v2.so -o /home/chris/catkin_ws/devel/.private/rotors_control/lib/libposition_controller_v2.so CMakeFiles/position_controller_v2.dir/src/library/position_controller_v2.cpp.o 

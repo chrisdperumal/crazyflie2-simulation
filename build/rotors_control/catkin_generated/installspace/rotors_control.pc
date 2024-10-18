@@ -1,8 +1,0 @@
-prefix=/home/chris/catkin_ws/install
-
-Name: rotors_control
-Description: Description of rotors_control
-Version: 7.0.1
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib -lposition_controller -lcrazyflie_onboard_controller -lsensfusion6 -lcrazyflie_complementary_filter
-Requires: geometry_msgs mav_msgs nav_msgs roscpp sensor_msgs

@@ -1,9 +1,0 @@
-/home/chris/catkin_ws/build/rotors_evaluation/CMakeFiles/install/strip.dir
-/home/chris/catkin_ws/build/rotors_evaluation/CMakeFiles/install/local.dir
-/home/chris/catkin_ws/build/rotors_evaluation/CMakeFiles/install.dir
-/home/chris/catkin_ws/build/rotors_evaluation/CMakeFiles/list_install_components.dir
-/home/chris/catkin_ws/build/rotors_evaluation/CMakeFiles/rebuild_cache.dir
-/home/chris/catkin_ws/build/rotors_evaluation/CMakeFiles/edit_cache.dir
-/home/chris/catkin_ws/build/rotors_evaluation/CMakeFiles/_catkin_empty_exported_target.dir
-/home/chris/catkin_ws/build/rotors_evaluation/CMakeFiles/doxygen.dir
-/home/chris/catkin_ws/build/rotors_evaluation/CMakeFiles/download_extra_data.dir

@@ -1,1 +1,0 @@
-set(ORDERED_PATHS "/home/chris/catkin_ws/devel/.private/rotors_control/lib;/opt/ros/noetic/lib")

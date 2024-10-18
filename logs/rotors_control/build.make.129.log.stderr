@@ -1,7 +1,0 @@
-/usr/bin/ld: CMakeFiles/lqr_feedforward_controller_node.dir/src/nodes/lqr_feedforward_controller_node.cpp.o: in function `rotors_control::LQRControllerNode::LQRControllerNode()':
-lqr_feedforward_controller_node.cpp:(.text+0x1728): undefined reference to `rotors_control::LQRControllerNode::OdometryCallback(boost::shared_ptr<nav_msgs::Odometry_<std::allocator<void> > const> const&)'
-/usr/bin/ld: lqr_feedforward_controller_node.cpp:(.text+0x1798): undefined reference to `rotors_control::LQRControllerNode::OdometryCallback(boost::shared_ptr<nav_msgs::Odometry_<std::allocator<void> > const> const&)'
-collect2: error: ld returned 1 exit status
-make[2]: *** [CMakeFiles/lqr_feedforward_controller_node.dir/build.make:102: /home/chris/catkin_ws/devel/.private/rotors_control/lib/rotors_control/lqr_feedforward_controller_node] Error 1
-make[1]: *** [CMakeFiles/Makefile2:1845: CMakeFiles/lqr_feedforward_controller_node.dir/all] Error 2
-make: *** [Makefile:130: all] Error 2
