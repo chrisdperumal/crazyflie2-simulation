@@ -10,6 +10,7 @@
 *.logs
 build/
 logs/
+devel/
 
 # Prerequisites
 *.d
