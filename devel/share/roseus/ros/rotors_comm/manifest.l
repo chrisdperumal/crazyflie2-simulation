@@ -1,1 +1,1 @@
-/home/chris/catkin_ws/devel/.private/rotors_comm/share/roseus/ros/rotors_comm/manifest.l
+/home/user/catkin_ws/devel/.private/rotors_comm/share/roseus/ros/rotors_comm/manifest.l

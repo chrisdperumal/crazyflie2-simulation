@@ -1,1 +1,1 @@
-/home/chris/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/DroneState.js
+/home/user/catkin_ws/devel/.private/mav_msgs/share/gennodejs/ros/mav_msgs/msg/DroneState.js

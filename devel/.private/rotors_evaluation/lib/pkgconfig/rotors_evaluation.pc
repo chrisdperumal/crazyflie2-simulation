@@ -1,4 +1,4 @@
-prefix=/home/chris/catkin_ws/devel/.private/rotors_evaluation
+prefix=/home/user/catkin_ws/devel/.private/rotors_evaluation
 
 Name: rotors_evaluation
 Description: Description of rotors_evaluation

@@ -1,1 +1,1 @@
-/home/chris/catkin_ws/devel/.private/catkin_tools_prebuild/local_setup.zsh
+/home/user/catkin_ws/devel/.private/catkin_tools_prebuild/local_setup.zsh

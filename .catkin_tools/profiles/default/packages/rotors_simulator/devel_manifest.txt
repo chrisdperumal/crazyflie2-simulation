@@ -1,2 +1,2 @@
 CrazyS/rotors_simulator
-/home/chris/catkin_ws/devel/.private/rotors_simulator/cmake.lock /home/chris/catkin_ws/devel/./cmake.lock
+/home/user/catkin_ws/devel/.private/rotors_simulator/cmake.lock /home/user/catkin_ws/devel/./cmake.lock

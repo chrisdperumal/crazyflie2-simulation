@@ -1,8 +1,8 @@
-prefix=/home/chris/catkin_ws/devel/.private/rotors_comm
+prefix=/home/user/catkin_ws/devel/.private/rotors_comm
 
 Name: rotors_comm
 Description: Description of rotors_comm
 Version: 7.0.1
-Cflags: -I/home/chris/catkin_ws/devel/.private/rotors_comm/include
+Cflags: -I/home/user/catkin_ws/devel/.private/rotors_comm/include
 Libs: -L${prefix}/lib 
 Requires: message_runtime

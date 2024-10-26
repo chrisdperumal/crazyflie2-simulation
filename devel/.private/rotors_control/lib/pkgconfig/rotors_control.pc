@@ -1,8 +1,8 @@
-prefix=/home/chris/catkin_ws/devel/.private/rotors_control
+prefix=/home/user/catkin_ws/devel/.private/rotors_control
 
 Name: rotors_control
 Description: Description of rotors_control
 Version: 7.0.1
-Cflags: -I/home/chris/catkin_ws/src/CrazyS/rotors_control/include
+Cflags: -I/home/user/catkin_ws/src/CrazyS/rotors_control/include
 Libs: -L${prefix}/lib -lposition_controller -lcrazyflie_onboard_controller -lsensfusion6 -lcrazyflie_complementary_filter
 Requires: geometry_msgs mav_msgs nav_msgs roscpp sensor_msgs

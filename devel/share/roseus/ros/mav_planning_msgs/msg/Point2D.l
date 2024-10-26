@@ -1,1 +1,1 @@
-/home/chris/catkin_ws/devel/.private/mav_planning_msgs/share/roseus/ros/mav_planning_msgs/msg/Point2D.l
+/home/user/catkin_ws/devel/.private/mav_planning_msgs/share/roseus/ros/mav_planning_msgs/msg/Point2D.l

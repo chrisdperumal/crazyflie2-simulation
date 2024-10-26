@@ -1,1 +1,1 @@
-/home/chris/catkin_ws/devel/.private/rotors_control/share/rotors_control/cmake/rotors_controlConfig-version.cmake
+/home/user/catkin_ws/devel/.private/rotors_control/share/rotors_control/cmake/rotors_controlConfig-version.cmake

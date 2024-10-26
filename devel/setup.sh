@@ -1,1 +1,1 @@
-/home/chris/catkin_ws/devel/.private/catkin_tools_prebuild/setup.sh
+/home/user/catkin_ws/devel/.private/catkin_tools_prebuild/setup.sh

@@ -1,1 +1,1 @@
-/home/chris/catkin_ws/devel/.private/mav_state_machine_msgs/share/roseus/ros/mav_state_machine_msgs/msg/StartStopTask.l
+/home/user/catkin_ws/devel/.private/mav_state_machine_msgs/share/roseus/ros/mav_state_machine_msgs/msg/StartStopTask.l

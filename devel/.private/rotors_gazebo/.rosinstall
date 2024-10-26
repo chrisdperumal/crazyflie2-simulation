@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/chris/catkin_ws/devel/.private/rotors_gazebo/setup.sh
+    local-name: /home/user/catkin_ws/devel/.private/rotors_gazebo/setup.sh
