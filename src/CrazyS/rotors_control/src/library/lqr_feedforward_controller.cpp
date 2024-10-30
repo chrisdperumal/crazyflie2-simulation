@@ -38,17 +38,19 @@
 #define GRAVITATIONAL_FORCE                                                    \
   9.81 * 0.027; // 0.027 is the mass of the drone in Kg
 
-const double M_Q = 0.025;               // Mass (kg) of the quadrotor
-const double L = 0.2159 / 2;          // Arm Length (half of 0.2159 meters)
-const double M_S = 0.410;             // Mass (kg) of the central sphere
-const double R = 0.0503513;           // Radius (m) of the sphere
-const double M_PROP = 0.00311;        // Mass (kg) of the propeller
-const double M_M = 0.036 + M_PROP;    // Mass (kg) of the motor + propeller
+const double M_Q = 0.025;          // Mass (kg) of the quadrotor
+const double L = 0.2159 / 2;       // Arm Length (half of 0.2159 meters)
+const double M_S = 0.410;          // Mass (kg) of the central sphere
+const double R = 0.0503513;        // Radius (m) of the sphere
+const double M_PROP = 0.00311;     // Mass (kg) of the propeller
+const double M_M = 0.036 + M_PROP; // Mass (kg) of the motor + propeller
 
-#define JX (((2 * M_S * R * R) / 5) + 2 * L * L * M_M)  // Moment of inertia about x-axis
-#define JY (((2 * M_S * R * R) / 5) + 2 * L * L * M_M)  // Moment of inertia about y-axis
-#define JZ (((2 * M_S * R * R) / 5) + 4 * L * L * M_M)  // Moment of inertia about z-axis
-
+#define JX                                                                     \
+  (((2 * M_S * R * R) / 5) + 2 * L * L * M_M) // Moment of inertia about x-axis
+#define JY                                                                     \
+  (((2 * M_S * R * R) / 5) + 2 * L * L * M_M) // Moment of inertia about y-axis
+#define JZ                                                                     \
+  (((2 * M_S * R * R) / 5) + 4 * L * L * M_M) // Moment of inertia about z-axis
 
 namespace rotors_control {
 Eigen::Matrix<double, 4, 12> K_;
@@ -107,34 +109,18 @@ LQRFeedforwardController::LQRFeedforwardController()
       1.21402992e-16, 2.57256807e-17, 3.46153349e-19, 3.32226906e-18,
       -1.72258166e-20, -3.87826323e-20, 2.00489708e-04, 6.74024195e-04;
 
- // Initialize A matrix
-  A_ << 0, 0, 0, 0, 0, 0, 0, 0, 0, -9.81, 0, 0,
-        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 9.81, 0, 0, 0, 0,
-        0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0;
+  // Initialize A matrix
+  A_ << 0, 0, 0, 0, 0, 0, 0, 0, 0, -9.81, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 9.81, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0;
 
   // Initialize B matrix
-  B_ << 0, 0, 0, 0,
-        0, 0, 0, 0,
-        0, 0, 0, 0,
-        0, 0, 0, 0,
-       -1 / M_Q, 0, 0, 0,
-        0, 0, 0, 0,
-        0, 1 / JX, 0, 0,
-        0, 0, 0, 0,
-        0, 0, 1 / JY, 0,
-        0, 0, 0, 0,
-        0, 0, 0, 1 / JZ,
-        0, 0, 0, 0;
-
+  B_ << 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 / M_Q, 0, 0, 0, 0, 0,
+      0, 0, 0, 1 / JX, 0, 0, 0, 0, 0, 0, 0, 0, 1 / JY, 0, 0, 0, 0, 0, 0, 0, 0,
+      1 / JZ, 0, 0, 0, 0;
 }
 
 LQRFeedforwardController::~LQRFeedforwardController() {}
@@ -174,38 +160,48 @@ Eigen::VectorXd LQRFeedforwardController::UpdateControllerWithLQR() {
   Eigen::VectorXd desired_state(12);
   Eigen::VectorXd error(12);
 
-  current_state << state_.linearVelocity.x,           // \dot{p}_x
-      state_.position.x,                              // p_x
-      state_.linearVelocity.y,                        // \dot{p}_y
-      state_.position.y,                              // p_y
-      state_.linearVelocity.z,                        // \dot{p}_z
-      state_.position.z,                              // p_z
-      state_.angularVelocity.x,                       // \dot{\phi}
-      state_.attitude.roll,                           // \phi
-      state_.angularVelocity.y,                       // \dot{\theta}
-      state_.attitude.pitch,                          // \theta
-      state_.angularVelocity.z,                       // \dot{\psi}
-      state_.attitude.yaw;                            // \psi
+  current_state << state_.linearVelocity.x, // \dot{p}_x
+      state_.position.x,                    // p_x
+      state_.linearVelocity.y,              // \dot{p}_y
+      state_.position.y,                    // p_y
+      state_.linearVelocity.z,              // \dot{p}_z
+      state_.position.z,                    // p_z
+      state_.angularVelocity.x,             // \dot{\phi}
+      state_.attitude.roll,                 // \phi
+      state_.angularVelocity.y,             // \dot{\theta}
+      state_.attitude.pitch,                // \theta
+      state_.angularVelocity.z,             // \dot{\psi}
+      state_.attitude.yaw;                  // \psi
+
+  // Convert desired quaternion to Euler angles
+  double desired_roll, desired_pitch, desired_yaw;
+  tf::Quaternion desired_q(command_trajectory_.orientation_W_B.x(),
+                           command_trajectory_.orientation_W_B.y(),
+                           command_trajectory_.orientation_W_B.z(),
+                           command_trajectory_.orientation_W_B.w());
+  tf::Matrix3x3(desired_q).getRPY(desired_roll, desired_pitch, desired_yaw);
+
   desired_state << command_trajectory_.velocity_W[0], // \dot{p}_x
       command_trajectory_.position_W[0],              // p_x
       command_trajectory_.velocity_W[1],              // \dot{p}_y
       command_trajectory_.position_W[1],              // p_y
       command_trajectory_.velocity_W[2],              // \dot{p}_z
       command_trajectory_.position_W[2],              // p_z
-      command_trajectory_.angular_velocity_W[0],      // \dot{\phi}
-      command_trajectory_.orientation_W_B.x(),        // \phi
-      command_trajectory_.angular_velocity_W[1],      // \dot{\theta}
-      command_trajectory_.orientation_W_B.y(),        // \theta
-      command_trajectory_.angular_velocity_W[2],      // \dot{\psi}
-      command_trajectory_.orientation_W_B.z();        // \psi
+      // Convert angular velocities to body frame if necessary
+      command_trajectory_.angular_velocity_W[0], // \dot{\phi}
+      desired_roll,                              // \phi
+      command_trajectory_.angular_velocity_W[1], // \dot{\theta}
+      desired_pitch,                             // \theta
+      command_trajectory_.angular_velocity_W[2], // \dot{\psi}
+      desired_yaw;                               // \psi
 
-  ROS_INFO_STREAM("Current State: " << current_state(1) << ", "
-                                    << current_state(3) << ", "
-                                    << current_state(5));
+  ROS_INFO_STREAM_THROTTLE(1, "Current State: " << current_state(1) << ", "
+                                                << current_state(3) << ", "
+                                                << current_state(5));
 
   error = current_state - desired_state;
-  ROS_INFO_STREAM("Error: " << error(1) << ", " << error(3) << ", "
-                            << error(5));
+  ROS_INFO_STREAM_THROTTLE(1, "Error: " << error(1) << ", " << error(3) << ", "
+                                        << error(5));
 
   Eigen::VectorXd control_input = -K_ * error;
 
@@ -255,11 +251,6 @@ void LQRFeedforwardController::HoveringController(double *omega) {
       delta_omega = -MAX_NEG_DELTA_OMEGA;
 
   *omega = OMEGA_OFFSET + delta_omega;
-
-  //  ROS_INFO("Delta_omega_kp: %f, Delta_omega_ki: %f, Delta_omega_kd: %f",
-  //  delta_omega_kp, delta_omega_ki_, delta_omega_kd); ROS_INFO("Z_error: %f,
-  //  Delta_omega: %f", z_error, delta_omega); ROS_INFO("Dot_zeta: %f",
-  //  dot_zeta); ROS_INFO("Omega: %f, delta_omega: %f", *omega, delta_omega);
 }
 void LQRFeedforwardController::LQRFeedforwardControllerFunction(
     double *p_command, double *q_command, double theta_command,
@@ -318,7 +309,7 @@ void LQRFeedforwardController::XYController(double *theta_command,
   double xe, ye;
   ErrorBodyFrame(&xe, &ye);
 
-  ROS_INFO("ErrorBodyFrame: returned: xe = %f, ye = %f", xe, ye);
+  //   ROS_INFO("ErrorBodyFrame: returned: xe = %f, ye = %f", xe, ye);
   double e_vx, e_vy;
   e_vx = xe - u;
   e_vy = ye - v;
@@ -334,22 +325,19 @@ void LQRFeedforwardController::XYController(double *theta_command,
   phi_command_ki_ = phi_command_ki_ + (xy_gain_ki_.y() * e_vy * SAMPLING_TIME);
   *phi_command = phi_command_kp + phi_command_ki_;
 
-  // Theta command is saturated considering the aircraft physical constraints
-  if (!(*theta_command<MAX_THETA_COMMAND && * theta_command> -
-        MAX_THETA_COMMAND)) {
-    // ROS_INFO("SATURATED PHISICAL CONTSTRAINTS OF AIRCRAFT THETA");
-    if (*theta_command > MAX_THETA_COMMAND)
-      *theta_command = MAX_THETA_COMMAND;
-    else
-      *theta_command = -MAX_THETA_COMMAND;
+  // Saturate theta_command
+  if (*theta_command > MAX_THETA_COMMAND) {
+    *theta_command = MAX_THETA_COMMAND;
+  } else if (*theta_command < -MAX_THETA_COMMAND) {
+    *theta_command = -MAX_THETA_COMMAND;
   }
 
-  // Phi command is saturated considering the aircraft physical constraints
-  if (!(*phi_command<MAX_PHI_COMMAND && * phi_command> - MAX_PHI_COMMAND))
-    if (*phi_command > MAX_PHI_COMMAND)
-      *phi_command = MAX_PHI_COMMAND;
-    else
-      *phi_command = -MAX_PHI_COMMAND;
+  // Saturate phi_command
+  if (*phi_command > MAX_PHI_COMMAND) {
+    *phi_command = MAX_PHI_COMMAND;
+  } else if (*phi_command < -MAX_PHI_COMMAND) {
+    *phi_command = -MAX_PHI_COMMAND;
+  }
 
   ROS_DEBUG("Theta_kp: %f, Theta_ki: %f", theta_command_kp, theta_command_ki_);
   ROS_DEBUG("Phi_kp: %f, Phi_ki: %f", phi_command_kp, phi_command_ki_);
@@ -373,10 +361,11 @@ void LQRFeedforwardController::ControlMixer(double thrust, double delta_phi,
   *PWM_3 = control_t_.thrust + (delta_theta / 2) + (delta_phi / 2) - delta_psi;
   *PWM_4 = control_t_.thrust - (delta_theta / 2) + (delta_phi / 2) + delta_psi;
 
-  ROS_INFO("Omega: %f, Delta_theta: %f, Delta_phi: %f, delta_psi: %f",
-           control_t_.thrust, delta_theta, delta_phi, delta_psi);
-  ROS_INFO("PWM1: %f, PWM2: %f, PWM3: %f, PWM4: %f", *PWM_1, *PWM_2, *PWM_3,
-           *PWM_4);
+  //   ROS_INFO("Omega: %f, Delta_theta: %f, Delta_phi: %f, delta_psi: %f",
+  //            control_t_.thrust, delta_theta, delta_phi, delta_psi);
+  //   ROS_INFO("PWM1: %f, PWM2: %f, PWM3: %f, PWM4: %f", *PWM_1, *PWM_2,
+  //   *PWM_3,
+  //            *PWM_4);
 }
 
 void LQRFeedforwardController::YawPositionController(double *r_command) {

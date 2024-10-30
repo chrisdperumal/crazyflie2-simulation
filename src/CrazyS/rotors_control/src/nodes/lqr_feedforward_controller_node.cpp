@@ -19,23 +19,6 @@
 
 namespace rotors_control {
 
-// Declare a constant 4x12 K matrix
-const Eigen::Matrix<double, 4, 12> K =
-    (Eigen::Matrix<double, 4, 12>() << 3.34346154e-20, 9.82008020e-20,
-     5.62063822e-20, 1.22657644e-19, -1.88597448e-02, -6.58666618e-03,
-     8.69525627e-21, 1.00150277e-19, -9.88396508e-21, -6.82907040e-20,
-     9.07692670e-20, 7.19431089e-20, 1.09427230e-18, 2.02425131e-18,
-     4.84821958e-04, 1.04167886e-03, 1.92338800e-16, 1.08067201e-16,
-     2.08020229e-04, 1.28298213e-03, -4.03432595e-19, -1.29781499e-18,
-     7.82638971e-20, -5.62365530e-18, -6.81956991e-04, -1.23527414e-03,
-     -7.99166140e-19, 4.99589885e-19, 2.14119721e-18, 3.84185385e-18,
-     -1.56832241e-19, -2.89601305e-19, 2.36402264e-04, 1.66355887e-03,
-     -4.56419088e-20, 8.77916357e-19, 2.10693953e-19, 1.07500827e-18,
-     2.33324996e-18, 6.66643592e-18, 1.21402992e-16, 2.57256807e-17,
-     3.46153349e-19, 3.32226906e-18, -1.72258166e-20, -3.87826323e-20,
-     2.00489708e-04, 6.74024195e-04)
-        .finished();
-
 LQRControllerNode::LQRControllerNode() {
 
   ROS_INFO("Started LQR feedforward controller");
@@ -228,59 +211,52 @@ void LQRControllerNode::OdometryCallback(
 
 void LQRControllerNode::UpdateController() {
   if (waypointHasBeenPublished_) {
-    EigenOdometry odometry;
-    Eigen::Vector4d ref_rotor_velocities;
-    Eigen::Vector4d control_input(4);
+    // Ensure last_rate_thrust_ has been initialized
+    // if (!rate_thrust_received_) {
+    //   ROS_WARN_THROTTLE(1, "Waiting for RateThrust message...");
+    //   return;
+    // }
 
     // Compute control signals directly
     double delta_phi, delta_theta, delta_psi;
     double p_command, q_command, r_command;
 
     double theta_command, phi_command;
-    lqr_feedforward_controller_.control_t_.thrust = last_rate_thrust_.thrust.x;
-    theta_command = last_rate_thrust_.thrust.y;
-    phi_command = last_rate_thrust_.thrust.z;
 
-    // We need to specify hovering and xy controller because these are ususally
-    // carried out in position controller
+    lqr_feedforward_controller_.HoveringController(
+        &lqr_feedforward_controller_.control_t_.thrust);
 
-    // Hovering Controller
-    //  lqr_feedforward_controller_.HoveringController(&lqr_feedforward_controller_.control_t_.thrust);
+    lqr_feedforward_controller_.XYController(&theta_command, &phi_command);
 
-    // XY Controller
-    //  lqr_feedforward_controller_.XYController(&theta_command, &phi_command);
+    lqr_feedforward_controller_.LQRFeedforwardControllerFunction(
+        &p_command, &q_command, theta_command, phi_command);
 
-    // Compute Attitude Controller
-    // lqr_feedforward_controller_.LQRFeedforwardControllerFunction(&p_command,
-    // &q_command, theta_command, phi_command);
+    lqr_feedforward_controller_.YawPositionController(&r_command);
 
-    // Compute Yaw Position Controller
-    // lqr_feedforward_controller_.YawPositionController(&r_command);
+    lqr_feedforward_controller_.RateController(
+        &delta_phi, &delta_theta, &delta_psi, p_command, q_command, r_command);
 
-    // Compute Rate Controller
-    // lqr_feedforward_controller_.RateController(&delta_phi, &delta_theta,
-    // &delta_psi, p_command, q_command, r_command);
+    // Call function to update the controller with LQR and Feedforward
+    // Eigen::Vector4d control_input =
+    //     lqr_feedforward_controller_.UpdateControllerWithLQR();
 
-    // Call my created function to update the controller with LQR and
-    // Feedforward
-    control_input =
-        8000 * lqr_feedforward_controller_.UpdateControllerWithLQR();
+    // // Set values from control_input to the thrust, theta, psi, etc.
+    // lqr_feedforward_controller_.control_t_.thrust = control_input(0);
+    // delta_phi = control_input(1);
+    // delta_theta = control_input(2);
+    // delta_psi = control_input(3);
 
-    // Set values from control_input to the thrust, theta, psi, etc.
-    lqr_feedforward_controller_.control_t_.thrust = control_input(0);
-    delta_phi = control_input(1);
-    delta_theta = control_input(2);
-    delta_psi = control_input(3);
+    // ROS_INFO_STREAM("Control Input: "
+    //                 << "Thrust: " << control_input(0) << ", "
+    //                 << "Delta Phi: " << control_input(1) << ", "
+    //                 << "Delta Theta: " << control_input(2) << ", "
+    //                 << "Delta Psi: " << control_input(3));
 
-    // The provided K Matrix uses normalized values for the forces, use the
-    // following to de-normalize the values before we send them to the control
-    // mixer. The max values were taken from xacro file
-
-    // lqr_feedforward_controller_.control_t_.thrust =
-    //     lqr_feedforward_controller_.control_t_.thrust * 0.3512;
-    // delta_phi = delta_phi * 2618;
-    // delta_theta = delta_theta * 2618;
-    // delta_psi = delta_psi * DENORMALIED_YAW_CONSTANT;
+    // // Denormalize control inputs
+    // lqr_feedforward_controller_.control_t_.thrust *= 0.3512;
+    // delta_phi *= 2618;
+    // delta_theta *= 2618;
+    // delta_psi *= DENORMALIED_YAW_CONSTANT;
 
     // Compute Control Mixer
     double PWM_1, PWM_2, PWM_3, PWM_4;
@@ -289,6 +265,7 @@ void LQRControllerNode::UpdateController() {
         delta_psi, &PWM_1, &PWM_2, &PWM_3, &PWM_4);
 
     // Calculate Rotor Velocities
+    Eigen::Vector4d ref_rotor_velocities;
     lqr_feedforward_controller_.CalculateRotorVelocities(
         &ref_rotor_velocities, PWM_1, PWM_2, PWM_3, PWM_4);
 
