@@ -208,7 +208,7 @@ Eigen::Vector4d LQRFeedforwardController::UpdateControllerWithLQR() {
   ROS_INFO_STREAM_THROTTLE(1, "Thrust with Gravity: " << control_input(0));
 
   // my own scaling to bring up the thrust
-  control_input *= 2618 * 10;
+  control_input *= 2618 * 10.25;
   return control_input;
 }
 
