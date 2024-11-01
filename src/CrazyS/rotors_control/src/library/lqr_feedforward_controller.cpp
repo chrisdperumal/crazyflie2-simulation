@@ -188,23 +188,27 @@ Eigen::Vector4d LQRFeedforwardController::UpdateControllerWithLQR() {
       command_trajectory_.position_W[1],              // p_y
       command_trajectory_.velocity_W[2],              // \dot{p}_z
       command_trajectory_.position_W[2],              // p_z
-      // Convert angular velocities to body frame if necessary
-      command_trajectory_.angular_velocity_W[0], // \dot{\phi}
-      desired_roll,                              // \phi
-      command_trajectory_.angular_velocity_W[1], // \dot{\theta}
-      desired_pitch,                             // \theta
-      command_trajectory_.angular_velocity_W[2], // \dot{\psi}
-      desired_yaw;                               // \psi
+      command_trajectory_.angular_velocity_W[0],      // \dot{\phi}
+      desired_roll,                                   // \phi
+      command_trajectory_.angular_velocity_W[1],      // \dot{\theta}
+      desired_pitch,                                  // \theta
+      command_trajectory_.angular_velocity_W[2],      // \dot{\psi}
+      desired_yaw;                                    // \psi
 
-  ROS_INFO_THROTTLE(3, "LQR current_state: [x: %.3f, y: %.3f, z: %.3f]",
-                    current_state(1), current_state(3), current_state(5));
-  ROS_INFO_THROTTLE(3, "LQR desired_state: [x: %.3f, y: %.3f, z: %.3f]",
-                    desired_state(1), desired_state(3), desired_state(5));
+  //   ROS_INFO_THROTTLE(3, "LQR current_state: [x: %.3f, y: %.3f, z: %.3f]",
+  //                     current_state(1), current_state(3), current_state(5));
+  //   ROS_INFO_THROTTLE(3, "LQR desired_state: [x: %.3f, y: %.3f, z: %.3f]",
+  //                     desired_state(1), desired_state(3), desired_state(5));
 
   error = current_state - desired_state;
 
   Eigen::Vector4d control_input = -K_ * error;
+  ROS_INFO_STREAM_THROTTLE(1, "Thrust: " << control_input(0));
+  control_input(0) += (M_Q * 9.81);
+  ROS_INFO_STREAM_THROTTLE(1, "Thrust with Gravity: " << control_input(0));
 
+  // my own scaling to bring up the thrust
+  control_input *= 2618 * 10;
   return control_input;
 }
 
