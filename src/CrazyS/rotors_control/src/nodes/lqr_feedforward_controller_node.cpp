@@ -13,7 +13,7 @@
 // #include "rotors_control/crazyflie_complementary_filter.h"
 
 #define GRAVITATIONAL_FORCE                                                    \
-  9.81 * 0.027; // 0.027 is the mass of the drone in Kg
+  9.81 * 0.025; // 0.027 is the mass of the drone in Kg
 
 #define DENORMALIED_YAW_CONSTANT 8.06428 * 10e-5 * 2618 * 2618;
 
@@ -212,14 +212,41 @@ void LQRControllerNode::OdometryCallback(
 void LQRControllerNode::UpdateController() {
 
   if (waypointHasBeenPublished_) {
-    // Get current values
-    double thrust = lqr_feedforward_controller_.control_t_.thrust;
-    double delta_phi = lqr_feedforward_controller_.control_t_.roll;
-    double delta_theta = lqr_feedforward_controller_.control_t_.pitch;
-    double delta_psi = lqr_feedforward_controller_.control_t_.yawRate;
+    EigenOdometry odometry;
+
+    Eigen::Vector4d ref_rotor_velocities;
+
+    // Compute control signals directly
+    double delta_phi, delta_theta, delta_psi;
+    double p_command, q_command, r_command;
+
+    double theta_command, phi_command;
+    lqr_feedforward_controller_.control_t_.thrust = last_rate_thrust_.thrust.x;
+    theta_command = last_rate_thrust_.thrust.y;
+    phi_command = last_rate_thrust_.thrust.z;
+
+    // lqr_feedforward_controller_.HoveringController(&lqr_feedforward_controller_.control_t_.thrust);
+    // lqr_feedforward_controller_.XYController(&theta_command, &phi_command);
+
+    // Compute Attitude Controller
+    lqr_feedforward_controller_.LQRFeedforwardControllerFunction(
+        &p_command, &q_command, theta_command, phi_command);
+
+    // Compute Yaw Position Controller
+    lqr_feedforward_controller_.YawPositionController(&r_command);
+
+    // Compute Rate Controller
+    lqr_feedforward_controller_.RateController(
+        &delta_phi, &delta_theta, &delta_psi, p_command, q_command, r_command);
 
     // Update the values with the K Matrix
-    lqr_feedforward_controller_.UpdateControllerWithLQR();
+    Eigen::Vector4d control =
+        lqr_feedforward_controller_.UpdateControllerWithLQR();
+
+    double thrust = control(0) + GRAVITATIONAL_FORCE + 5000;
+    delta_phi = control(1);
+    delta_theta = control(2);
+    delta_psi = control(3);
 
     ROS_INFO_STREAM_THROTTLE(1, "LQR control: [" << thrust << ", " << delta_phi
                                                  << ", " << delta_theta << ", "

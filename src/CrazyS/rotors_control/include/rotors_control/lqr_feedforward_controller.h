@@ -116,7 +116,7 @@ public:
                                         double theta_command,
                                         double phi_command);
   void ErrorBodyFrame(double *xe, double *ye) const;
-  void UpdateControllerWithLQR();
+  Eigen::Vector4d UpdateControllerWithLQR();
   void HoveringController(double *delta_omega);
   void YawPositionController(double *r_command);
   void XYController(double *theta_command, double *phi_command);

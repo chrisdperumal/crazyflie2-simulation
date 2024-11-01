@@ -156,7 +156,7 @@ void LQRFeedforwardController::SetControllerGains() {
   hovering_gain_kd_ = controller_parameters_.hovering_gain_kd_;
 }
 
-void LQRFeedforwardController::UpdateControllerWithLQR() {
+Eigen::Vector4d LQRFeedforwardController::UpdateControllerWithLQR() {
   Eigen::VectorXd current_state(12);
   Eigen::VectorXd desired_state(12);
   Eigen::VectorXd error(12);
@@ -203,11 +203,9 @@ void LQRFeedforwardController::UpdateControllerWithLQR() {
 
   error = current_state - desired_state;
 
-  Eigen::VectorXd control_input = -K_ * error;
-  control_t_.thrust = control_input(0) * 9000 + M_Q * 9.81;
-  control_t_.roll = control_input(1);
-  control_t_.pitch = control_input(2);
-  control_t_.yawRate = control_input(3);
+  Eigen::Vector4d control_input = -K_ * error;
+
+  return control_input;
 }
 
 void LQRFeedforwardController::SetTrajectoryPoint(
