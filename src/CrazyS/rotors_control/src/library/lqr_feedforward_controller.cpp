@@ -36,10 +36,11 @@
 #define SAMPLING_TIME_HOVERING 0.001 /* SAMPLING TIME HOVERING*/
 // the sampling times should be the same as the frequency the loops are running
 #define GRAVITATIONAL_FORCE                                                    \
-  9.81 * 0.027; // 0.027 is the mass of the drone in Kg
+  9.81 * 0.025; // 0.027 is the mass of the drone in Kg
 
 const double M_Q = 0.025;          // Mass (kg) of the quadrotor
-const double L = 0.2159 / 2;       // Arm Length (half of 0.2159 meters)
+const double L = 0.046;            // Arm Length (half of 0.2159 meters)
+const double GAMMA = 8.06428e-05;  // Rotor drag Coefficent
 const double M_S = 0.410;          // Mass (kg) of the central sphere
 const double R = 0.0503513;        // Radius (m) of the sphere
 const double M_PROP = 0.00311;     // Mass (kg) of the propeller
@@ -155,7 +156,7 @@ void LQRFeedforwardController::SetControllerGains() {
   hovering_gain_kd_ = controller_parameters_.hovering_gain_kd_;
 }
 
-Eigen::VectorXd LQRFeedforwardController::UpdateControllerWithLQR() {
+void LQRFeedforwardController::UpdateControllerWithLQR() {
   Eigen::VectorXd current_state(12);
   Eigen::VectorXd desired_state(12);
   Eigen::VectorXd error(12);
@@ -195,18 +196,18 @@ Eigen::VectorXd LQRFeedforwardController::UpdateControllerWithLQR() {
       command_trajectory_.angular_velocity_W[2], // \dot{\psi}
       desired_yaw;                               // \psi
 
-  ROS_INFO_STREAM_THROTTLE(1, "Current State: " << current_state(1) << ", "
-                                                << current_state(3) << ", "
-                                                << current_state(5));
+  ROS_INFO_THROTTLE(3, "LQR current_state: [x: %.3f, y: %.3f, z: %.3f]",
+                    current_state(1), current_state(3), current_state(5));
+  ROS_INFO_THROTTLE(3, "LQR desired_state: [x: %.3f, y: %.3f, z: %.3f]",
+                    desired_state(1), desired_state(3), desired_state(5));
 
   error = current_state - desired_state;
-  ROS_INFO_STREAM_THROTTLE(1, "Error: " << error(1) << ", " << error(3) << ", "
-                                        << error(5));
 
   Eigen::VectorXd control_input = -K_ * error;
-
-  control_input(0) += GRAVITATIONAL_FORCE; // Add gravitational force
-  return control_input;
+  control_t_.thrust = control_input(0) * 9000 + M_Q * 9.81;
+  control_t_.roll = control_input(1);
+  control_t_.pitch = control_input(2);
+  control_t_.yawRate = control_input(3);
 }
 
 void LQRFeedforwardController::SetTrajectoryPoint(
@@ -356,16 +357,15 @@ void LQRFeedforwardController::ControlMixer(double thrust, double delta_phi,
   assert(PWM_3);
   assert(PWM_4);
 
-  *PWM_1 = control_t_.thrust - (delta_theta / 2) - (delta_phi / 2) - delta_psi;
-  *PWM_2 = control_t_.thrust + (delta_theta / 2) - (delta_phi / 2) + delta_psi;
-  *PWM_3 = control_t_.thrust + (delta_theta / 2) + (delta_phi / 2) - delta_psi;
-  *PWM_4 = control_t_.thrust - (delta_theta / 2) + (delta_phi / 2) + delta_psi;
+  *PWM_1 = thrust - (delta_theta / 2) - (delta_phi / 2) - delta_psi;
+  *PWM_2 = thrust + (delta_theta / 2) - (delta_phi / 2) + delta_psi;
+  *PWM_3 = thrust + (delta_theta / 2) + (delta_phi / 2) - delta_psi;
+  *PWM_4 = thrust - (delta_theta / 2) + (delta_phi / 2) + delta_psi;
 
   //   ROS_INFO("Omega: %f, Delta_theta: %f, Delta_phi: %f, delta_psi: %f",
   //            control_t_.thrust, delta_theta, delta_phi, delta_psi);
-  //   ROS_INFO("PWM1: %f, PWM2: %f, PWM3: %f, PWM4: %f", *PWM_1, *PWM_2,
-  //   *PWM_3,
-  //            *PWM_4);
+  ROS_INFO_THROTTLE(1, "PWM1: %f, PWM2: %f, PWM3: %f, PWM4: %f", *PWM_1, *PWM_2,
+                    *PWM_3, *PWM_4);
 }
 
 void LQRFeedforwardController::YawPositionController(double *r_command) {
@@ -539,8 +539,8 @@ void LQRFeedforwardController::CalculateRotorVelocities(
                   ? MAX_PROPELLERS_ANGULAR_VELOCITY
                   : 0;
 
-  ROS_DEBUG("Omega_1: %f Omega_2: %f Omega_3: %f Omega_4: %f", omega_1, omega_2,
-            omega_3, omega_4);
+  ROS_INFO_THROTTLE(1, "Omega_1: %f Omega_2: %f Omega_3: %f Omega_4: %f",
+                    omega_1, omega_2, omega_3, omega_4);
   *rotor_velocities = Eigen::Vector4d(omega_1, omega_2, omega_3, omega_4);
 }
 

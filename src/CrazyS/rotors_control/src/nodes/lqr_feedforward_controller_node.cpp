@@ -210,59 +210,26 @@ void LQRControllerNode::OdometryCallback(
 }
 
 void LQRControllerNode::UpdateController() {
+
   if (waypointHasBeenPublished_) {
-    // Ensure last_rate_thrust_ has been initialized
-    // if (!rate_thrust_received_) {
-    //   ROS_WARN_THROTTLE(1, "Waiting for RateThrust message...");
-    //   return;
-    // }
+    // Get current values
+    double thrust = lqr_feedforward_controller_.control_t_.thrust;
+    double delta_phi = lqr_feedforward_controller_.control_t_.roll;
+    double delta_theta = lqr_feedforward_controller_.control_t_.pitch;
+    double delta_psi = lqr_feedforward_controller_.control_t_.yawRate;
 
-    // Compute control signals directly
-    double delta_phi, delta_theta, delta_psi;
-    double p_command, q_command, r_command;
+    // Update the values with the K Matrix
+    lqr_feedforward_controller_.UpdateControllerWithLQR();
 
-    double theta_command, phi_command;
+    ROS_INFO_STREAM_THROTTLE(1, "LQR control: [" << thrust << ", " << delta_phi
+                                                 << ", " << delta_theta << ", "
+                                                 << delta_psi << "]");
 
-    lqr_feedforward_controller_.HoveringController(
-        &lqr_feedforward_controller_.control_t_.thrust);
-
-    lqr_feedforward_controller_.XYController(&theta_command, &phi_command);
-
-    lqr_feedforward_controller_.LQRFeedforwardControllerFunction(
-        &p_command, &q_command, theta_command, phi_command);
-
-    lqr_feedforward_controller_.YawPositionController(&r_command);
-
-    lqr_feedforward_controller_.RateController(
-        &delta_phi, &delta_theta, &delta_psi, p_command, q_command, r_command);
-
-    // Call function to update the controller with LQR and Feedforward
-    // Eigen::Vector4d control_input =
-    //     lqr_feedforward_controller_.UpdateControllerWithLQR();
-
-    // // Set values from control_input to the thrust, theta, psi, etc.
-    // lqr_feedforward_controller_.control_t_.thrust = control_input(0);
-    // delta_phi = control_input(1);
-    // delta_theta = control_input(2);
-    // delta_psi = control_input(3);
-
-    // ROS_INFO_STREAM("Control Input: "
-    //                 << "Thrust: " << control_input(0) << ", "
-    //                 << "Delta Phi: " << control_input(1) << ", "
-    //                 << "Delta Theta: " << control_input(2) << ", "
-    //                 << "Delta Psi: " << control_input(3));
-
-    // // Denormalize control inputs
-    // lqr_feedforward_controller_.control_t_.thrust *= 0.3512;
-    // delta_phi *= 2618;
-    // delta_theta *= 2618;
-    // delta_psi *= DENORMALIED_YAW_CONSTANT;
-
-    // Compute Control Mixer
+    // Send the new values to the control mixer
     double PWM_1, PWM_2, PWM_3, PWM_4;
-    lqr_feedforward_controller_.ControlMixer(
-        lqr_feedforward_controller_.control_t_.thrust, delta_phi, delta_theta,
-        delta_psi, &PWM_1, &PWM_2, &PWM_3, &PWM_4);
+    lqr_feedforward_controller_.ControlMixer(thrust, delta_phi, delta_theta,
+                                             delta_psi, &PWM_1, &PWM_2, &PWM_3,
+                                             &PWM_4);
 
     // Calculate Rotor Velocities
     Eigen::Vector4d ref_rotor_velocities;

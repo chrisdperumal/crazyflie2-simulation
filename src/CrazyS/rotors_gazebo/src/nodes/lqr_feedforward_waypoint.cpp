@@ -14,8 +14,9 @@ void odometryCallback(const nav_msgs::Odometry::ConstPtr &msg) {
   current_position.x() = msg->pose.pose.position.x;
   current_position.y() = msg->pose.pose.position.y;
   current_position.z() = msg->pose.pose.position.z;
-  // ROS_INFO("Odometry position received: [x: %f, y: %f, z: %f]",
-  //          current_position.x(), current_position.y(), current_position.z());
+  ROS_INFO_THROTTLE(3, "Odometry current_state: [x: %f, y: %f, z: %f]",
+                    current_position.x(), current_position.y(),
+                    current_position.z());
 }
 
 void publishTrajectory(const ros::Publisher &publisher,
@@ -96,10 +97,10 @@ int main(int argc, char **argv) {
     Eigen::Vector3d desired_position = waypoints[i];
 
     // Overwrite defaults if set as node parameters.
-    // nh_private.param("x", desired_position.x(), desired_position.x());
-    // nh_private.param("y", desired_position.y(), desired_position.y());
-    // nh_private.param("z", desired_position.z(), desired_position.z());
-    // nh_private.param("yaw", desired_yaw, desired_yaw);
+    nh_private.param("x", desired_position.x(), desired_position.x());
+    nh_private.param("y", desired_position.y(), desired_position.y());
+    nh_private.param("z", desired_position.z(), desired_position.z());
+    nh_private.param("yaw", desired_yaw, desired_yaw);
 
     publishTrajectory(trajectory_pub, desired_position, desired_yaw,
                       time_to_reach_waypoint);
@@ -107,10 +108,7 @@ int main(int argc, char **argv) {
     ros::Rate rate(2); // 2 Hz
     while (ros::ok() && !isCloseEnough(desired_position, threshold)) {
       ros::spinOnce();
-      ROS_INFO_THROTTLE(5, "Current position: [%f, %f, %f]",
-                        current_position.x(), current_position.y(),
-                        current_position.z());
-      rate.sleep();
+      rate.sleep(); // Sleep for 500 millisesconds
     }
 
     ROS_INFO("WAYPOINT %d REACHED! Hovering for 5 seconds...", i + 1);
