@@ -363,7 +363,9 @@ void LQRFeedforwardController::ControlMixer(double thrust, double delta_phi,
 
   control_inputs << thrust, delta_theta, delta_phi, delta_psi;
   Eigen::Vector4d PWM = M_inv * control_inputs;
-  //   control_t_.thrust = thrust;
+    
+  //Is this line necessary?  
+  control_t_.thrust = thrust;
   *PWM_1 = PWM(0);
   *PWM_2 = PWM(1);
   *PWM_3 = PWM(2);
