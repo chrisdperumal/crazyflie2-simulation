@@ -13,7 +13,7 @@
 // #include "rotors_control/crazyflie_complementary_filter.h"
 
 #define GRAVITATIONAL_FORCE                                                    \
-  9.81 * 0.025; // 0.027 is the mass of the drone in Kg
+  9.81 * 0.025; // 0.025 is the mass of the drone in Kg
 
 #define DENORMALIED_YAW_CONSTANT 8.06428 * 10e-5 * 2618 * 2618;
 
@@ -218,6 +218,7 @@ void LQRControllerNode::UpdateController() {
 
     // Compute control signals directly
     double delta_phi, delta_theta, delta_psi;
+    double thrust;
     double p_command, q_command, r_command;
 
     double theta_command, phi_command;
@@ -245,22 +246,24 @@ void LQRControllerNode::UpdateController() {
     Eigen::Vector4d control =
         lqr_feedforward_controller_.UpdateControllerWithLQR();
 
-    lqr_feedforward_controller_.control_t_.thrust = control(0);
+    // lqr_feedforward_controller_.control_t_.thrust = control(0);
+    thrust = control(0);
     delta_phi = control(1);
     delta_theta = control(2);
     delta_psi = control(3);
 
+    lqr_feedforward_controller_.control_t_.thrust = thrust;
+
     // ROS_INFO_STREAM_THROTTLE(1, "Computed thrust: " << control(0));
-    ROS_INFO_STREAM_THROTTLE(
-        1, "LQR control: [" << lqr_feedforward_controller_.control_t_.thrust
-                            << ", " << delta_phi << ", " << delta_theta << ", "
-                            << delta_psi << "]");
+    ROS_INFO_STREAM_THROTTLE(1, "Control Signal: ["
+                                    << thrust << ", " << delta_phi << ", "
+                                    << delta_theta << ", " << delta_psi << "]");
 
     // Send the new values to the control mixer
     double PWM_1, PWM_2, PWM_3, PWM_4;
-    lqr_feedforward_controller_.ControlMixer(
-        lqr_feedforward_controller_.control_t_.thrust, delta_phi, delta_theta,
-        delta_psi, &PWM_1, &PWM_2, &PWM_3, &PWM_4);
+    lqr_feedforward_controller_.ControlMixer(thrust, delta_phi, delta_theta,
+                                             delta_psi, &PWM_1, &PWM_2, &PWM_3,
+                                             &PWM_4);
 
     // Calculate Rotor Velocities
 
