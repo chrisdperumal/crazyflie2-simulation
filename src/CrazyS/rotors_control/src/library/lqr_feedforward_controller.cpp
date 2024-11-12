@@ -6,6 +6,7 @@
 #include "rotors_control/transform_datatypes.h"
 
 #include <chrono>
+#include <cmath>
 #include <math.h>
 #include <ros/ros.h>
 #include <time.h>
@@ -21,42 +22,44 @@
 #include <nav_msgs/Odometry.h>
 #include <ros/console.h>
 
-#define M_PI 3.14159265358979323846      /* pi [rad]*/
-#define OMEGA_OFFSET 6874                /* OMEGA OFFSET [PWM]*/
-#define ANGULAR_MOTOR_COEFFICIENT 0.2685 /* ANGULAR_MOTOR_COEFFICIENT */
-#define MOTORS_INTERCEPT 426.24          /* MOTORS_INTERCEPT [rad/s]*/
+#define M_PI 3.14159265358979323846      // Pi [rad]
+#define OMEGA_OFFSET 6874                // Omega Offset [PWM]
+#define ANGULAR_MOTOR_COEFFICIENT 0.2685 // Angular Motor Coefficient
+#define MOTORS_INTERCEPT 426.24          // Motors Intercept [rad/s]
 #define MAX_PROPELLERS_ANGULAR_VELOCITY                                        \
-  2618                            /* MAX PROPELLERS ANGULAR VELOCITY [rad/s]*/
-#define MAX_R_DESIDERED 3.4907    /* MAX R DESIDERED VALUE [rad/s]*/
-#define MAX_THETA_COMMAND 0.7236  /* MAX THETA COMMMAND [rad]*/
-#define MAX_PHI_COMMAND 0.7236    /* MAX PHI COMMAND [rad]*/
-#define MAX_POS_DELTA_OMEGA 1289  /* MAX POSITIVE DELTA OMEGA [PWM]*/
-#define MAX_NEG_DELTA_OMEGA -1718 /* MAX NEGATIVE DELTA OMEGA [PWM]*/
-#define SAMPLING_TIME 0.001       /* SAMPLING TIME [s] */
-#define SAMPLING_TIME_HOVERING 0.001 /* SAMPLING TIME HOVERING*/
-// the sampling times should be the same as the frequency the loops are running
+  2618                               // Max Propellers Angular Velocity [rad/s]
+#define MAX_R_DESIDERED 3.4907       // Max R Desired Value [rad/s]
+#define MAX_THETA_COMMAND 0.7236     // Max Theta Command [rad]
+#define MAX_PHI_COMMAND 0.7236       // Max Phi Command [rad]
+#define MAX_POS_DELTA_OMEGA 1289     // Max Positive Delta Omega [PWM]
+#define MAX_NEG_DELTA_OMEGA -1718    // Max Negative Delta Omega [PWM]
+#define SAMPLING_TIME 0.001          // Sampling Time [s]
+#define SAMPLING_TIME_HOVERING 0.001 // Sampling Time Hovering [s]
+#define MAX_ROT_VELOCITY 3052
+
 #define GRAVITATIONAL_FORCE                                                    \
-  9.81 * 0.025; // 0.027 is the mass of the drone in Kg
+  (9.81 * 0.025)                   // Gravitational force (N) with 0.025 kg mass
+#define MOTOR_CONSTANT 1.28192e-08 // Motor Thrust Constant [kg m/s^2]
 
-const double M_Q = 0.025;          // Mass (kg) of the quadrotor
-const double L = 0.046;            // Arm Length (half of 0.2159 meters)
-const double GAMMA = 8.06428e-05;  // Rotor drag Coefficent
-const double M_S = 0.410;          // Mass (kg) of the central sphere
-const double R = 0.0503513;        // Radius (m) of the sphere
-const double M_PROP = 0.00311;     // Mass (kg) of the propeller
-const double M_M = 0.036 + M_PROP; // Mass (kg) of the motor + propeller
+// Constants for Moment of Inertia Calculations
+const double M_Q = 0.025;           // Total Mass (kg) of the quadrotor
+const double L = 0.046;             // Arm Length (m)
+const double GAMMA = 0.00000214923; // Rotor Drag Coefficient
+const double M_S = 0.410;           // Mass (kg) of the central sphere
+const double R = 0.0503513;         // Radius (m) of the central sphere
+const double M_PROP = 0.00311;      // Mass (kg) of the propeller
+const double M_M = 0.036 + M_PROP;  // Mass (kg) of the motor + propeller
 
-#define JX                                                                     \
-  (((2 * M_S * R * R) / 5) + 2 * L * L * M_M) // Moment of inertia about x-axis
-#define JY                                                                     \
-  (((2 * M_S * R * R) / 5) + 2 * L * L * M_M) // Moment of inertia about y-axis
-#define JZ                                                                     \
-  (((2 * M_S * R * R) / 5) + 4 * L * L * M_M) // Moment of inertia about z-axis
+// Define the inverse control matrix M_inv
+const Eigen::Matrix4d M_inv =
+    (Eigen::Matrix4d() << 0.25, -1.0 / (4 * L), 1.0 / (4 * L),
+     1.0 / (4 * GAMMA), 0.25, 1.0 / (4 * L), -1.0 / (4 * L), 1.0 / (4 * GAMMA),
+     0.25, 1.0 / (4 * L), 1.0 / (4 * L), -1.0 / (4 * GAMMA), 0.25,
+     -1.0 / (4 * L), -1.0 / (4 * L), -1.0 / (4 * GAMMA))
+        .finished();
 
 namespace rotors_control {
 Eigen::Matrix<double, 4, 12> K_;
-Eigen::Matrix<double, 12, 12> A_;
-Eigen::Matrix<double, 12, 4> B_;
 
 LQRFeedforwardController::LQRFeedforwardController()
     : controller_active_(false), state_estimator_active_(false),
@@ -109,19 +112,6 @@ LQRFeedforwardController::LQRFeedforwardController()
       2.10693953e-19, 1.07500827e-18, 2.33324996e-18, 6.66643592e-18,
       1.21402992e-16, 2.57256807e-17, 3.46153349e-19, 3.32226906e-18,
       -1.72258166e-20, -3.87826323e-20, 2.00489708e-04, 6.74024195e-04;
-
-  // Initialize A matrix
-  A_ << 0, 0, 0, 0, 0, 0, 0, 0, 0, -9.81, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 9.81, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0;
-
-  // Initialize B matrix
-  B_ << 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 / M_Q, 0, 0, 0, 0, 0,
-      0, 0, 0, 1 / JX, 0, 0, 0, 0, 0, 0, 0, 0, 1 / JY, 0, 0, 0, 0, 0, 0, 0, 0,
-      1 / JZ, 0, 0, 0, 0;
 }
 
 LQRFeedforwardController::~LQRFeedforwardController() {}
@@ -188,22 +178,30 @@ Eigen::Vector4d LQRFeedforwardController::UpdateControllerWithLQR() {
       command_trajectory_.position_W[1],              // p_y
       command_trajectory_.velocity_W[2],              // \dot{p}_z
       command_trajectory_.position_W[2],              // p_z
-      // Convert angular velocities to body frame if necessary
-      command_trajectory_.angular_velocity_W[0], // \dot{\phi}
-      desired_roll,                              // \phi
-      command_trajectory_.angular_velocity_W[1], // \dot{\theta}
-      desired_pitch,                             // \theta
-      command_trajectory_.angular_velocity_W[2], // \dot{\psi}
-      desired_yaw;                               // \psi
+      command_trajectory_.angular_velocity_W[0],      // \dot{\phi}
+      desired_roll,                                   // \phi
+      command_trajectory_.angular_velocity_W[1],      // \dot{\theta}
+      desired_pitch,                                  // \theta
+      command_trajectory_.angular_velocity_W[2],      // \dot{\psi}
+      desired_yaw;                                    // \psi
 
-  ROS_INFO_THROTTLE(3, "LQR current_state: [x: %.3f, y: %.3f, z: %.3f]",
-                    current_state(1), current_state(3), current_state(5));
-  ROS_INFO_THROTTLE(3, "LQR desired_state: [x: %.3f, y: %.3f, z: %.3f]",
-                    desired_state(1), desired_state(3), desired_state(5));
+  //   ROS_INFO_THROTTLE(1, "LQR current_state: [x: %.3f, y: %.3f, z: %.3f]",
+  //                     current_state(1), current_state(3), current_state(5));
+  //   ROS_INFO_THROTTLE(1, "LQR desired_state: [x: %.3f, y: %.3f, z: %.3f]",
+  //                     desired_state(1), desired_state(3), desired_state(5));
 
   error = current_state - desired_state;
+  // Print the error vector with throttling (e.g., every 3 seconds)
+  ROS_INFO_STREAM_THROTTLE(1, "Error: ["
+                                  << "x: " << error(1) << ", "
+                                  << "y: " << error(3) << ", "
+                                  << "z: " << error(5) << "]");
 
   Eigen::Vector4d control_input = -K_ * error;
+
+  ROS_INFO_STREAM_THROTTLE(
+      1, "Control: [" << control_input(0) << ", " << control_input(1) << ", "
+                      << control_input(2) << ", " << control_input(3) << "]");
 
   return control_input;
 }
@@ -355,13 +353,25 @@ void LQRFeedforwardController::ControlMixer(double thrust, double delta_phi,
   assert(PWM_3);
   assert(PWM_4);
 
-  *PWM_1 = thrust - (delta_theta / 2) - (delta_phi / 2) - delta_psi;
-  *PWM_2 = thrust + (delta_theta / 2) - (delta_phi / 2) + delta_psi;
-  *PWM_3 = thrust + (delta_theta / 2) + (delta_phi / 2) - delta_psi;
-  *PWM_4 = thrust - (delta_theta / 2) + (delta_phi / 2) + delta_psi;
+  //   control_t_.thrust = thrust;
 
-  //   ROS_INFO("Omega: %f, Delta_theta: %f, Delta_phi: %f, delta_psi: %f",
-  //            control_t_.thrust, delta_theta, delta_phi, delta_psi);
+  //   *PWM_1 = thrust - delta_theta - delta_phi - delta_psi;
+  //   *PWM_2 = thrust + (delta_theta / 2) - (delta_phi / 2) + delta_psi;
+  //   *PWM_3 = thrust + (delta_theta / 2) + (delta_phi / 2) - delta_psi;
+  //   *PWM_4 = thrust - (delta_theta / 2) + (delta_phi / 2) + delta_psi;
+  Eigen::Vector4d control_inputs;
+
+  control_inputs << thrust, delta_theta, delta_phi, delta_psi;
+  Eigen::Vector4d PWM = M_inv * control_inputs;
+  //   control_t_.thrust = thrust;
+  *PWM_1 = PWM(0);
+  *PWM_2 = PWM(1);
+  *PWM_3 = PWM(2);
+  *PWM_4 = PWM(3);
+
+  ROS_INFO_THROTTLE(1,
+                    "Omega: %f, Delta_theta: %f, Delta_phi: %f, delta_psi: %f",
+                    control_t_.thrust, delta_theta, delta_phi, delta_psi);
   ROS_INFO_THROTTLE(1, "PWM1: %f, PWM2: %f, PWM3: %f, PWM4: %f", *PWM_1, *PWM_2,
                     *PWM_3, *PWM_4);
 }
@@ -511,6 +521,12 @@ void LQRFeedforwardController::CalculateRotorVelocities(
   }
 
   // Compute motor velocities
+
+  //   double omega_1 = PWM_1;
+  //   double omega_2 = PWM_2;
+  //   double omega_3 = PWM_3;
+  //   double omega_4 = PWM_4;
+
   double omega_1 = (PWM_1 * ANGULAR_MOTOR_COEFFICIENT) + MOTORS_INTERCEPT;
   double omega_2 = (PWM_2 * ANGULAR_MOTOR_COEFFICIENT) + MOTORS_INTERCEPT;
   double omega_3 = (PWM_3 * ANGULAR_MOTOR_COEFFICIENT) + MOTORS_INTERCEPT;

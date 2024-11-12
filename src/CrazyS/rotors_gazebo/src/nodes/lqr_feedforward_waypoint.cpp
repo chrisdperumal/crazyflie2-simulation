@@ -87,7 +87,7 @@ int main(int argc, char **argv) {
 
   // define waypoints where to fly to:
   std::vector<Eigen::Vector3d> waypoints = {
-      {0.0, 0.0, 1.0}, {0.0, 1.0, 1.0}, {0.0, 0.0, 0.0}};
+      {1.0, 1.0, 1.0}, {0.0, 1.0, 1.0}, {0.0, 0.0, 0.0}};
 
   double threshold = 0.1;
   double desired_yaw = 0.0;
@@ -105,7 +105,7 @@ int main(int argc, char **argv) {
     publishTrajectory(trajectory_pub, desired_position, desired_yaw,
                       time_to_reach_waypoint);
 
-    ros::Rate rate(2); // 2 Hz
+    ros::Rate rate(200); // 2 Hz
     while (ros::ok() && !isCloseEnough(desired_position, threshold)) {
       ros::spinOnce();
       rate.sleep(); // Sleep for 500 millisesconds
