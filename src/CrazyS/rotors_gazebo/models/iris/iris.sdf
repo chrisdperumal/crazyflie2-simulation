@@ -47,6 +47,8 @@
           </script>
         </material>
       </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
     </link>
     <joint name='/imu_joint' type='revolute'>
       <pose relative_to='base_link'>0 0 0 0 -0 0</pose>
@@ -143,6 +145,8 @@
           </script>
         </material>
       </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
     </link>
     <joint name='rotor_1_joint' type='revolute'>
       <pose relative_to='base_link'>-0.13 0.2 0.023 0 -0 0</pose>
@@ -206,6 +210,8 @@
           </script>
         </material>
       </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
     </link>
     <joint name='rotor_2_joint' type='revolute'>
       <pose relative_to='base_link'>0.13 0.22 0.023 0 -0 0</pose>
@@ -269,6 +275,8 @@
           </script>
         </material>
       </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
     </link>
     <joint name='rotor_3_joint' type='revolute'>
       <pose relative_to='base_link'>-0.13 -0.2 0.023 0 -0 0</pose>
@@ -332,6 +340,8 @@
           </script>
         </material>
       </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
     </link>
     <plugin name='rosbag' filename='librotors_gazebo_multirotor_base_plugin.so'>
       <robotNamespace/>

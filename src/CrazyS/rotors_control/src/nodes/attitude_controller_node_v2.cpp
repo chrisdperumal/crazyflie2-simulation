@@ -29,6 +29,13 @@
 
 #include "rotors_control/parameters_ros.h"
 #include "rotors_control/stabilizer_types.h"
+#include <ctime>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <rosgraph_msgs/Clock.h>
+#include <string>
+#include <unistd.h> // for getcwd()
 
 namespace rotors_control {
 
@@ -58,6 +65,14 @@ AttitudeControllerNode::AttitudeControllerNode() {
   geometry_sub_ = nh.subscribe<mav_msgs::RateThrust>(
       mav_msgs::default_topics::COMMAND_RATE_THRUST, 1,
       &AttitudeControllerNode::geometryCallback, this);
+
+  clock_sub_ =
+      nh_.subscribe("/clock", 10, &AttitudeControllerNode::clockCallback, this);
+}
+
+void AttitudeControllerNode::clockCallback(
+    const rosgraph_msgs::Clock::ConstPtr &msg) {
+  gazebo_time_ = msg->clock;
 }
 
 void AttitudeControllerNode::MultiDofJointTrajectoryCallback(
@@ -206,27 +221,52 @@ void AttitudeControllerNode::OdometryCallback(
   attitude_controller_.SetCurrentStateFromOdometry(odometry);
 }
 
+// #include <fstream>
+// #include <iostream>
+// #include <ctime>
+
+#include <ctime>
+#include <fstream>
+#include <iostream>
+#include <ros/ros.h>
+#include <ros/time.h>
+
 void AttitudeControllerNode::writeToFile(double thrust, double theta_command,
                                          double phi_command) {
-  std::ofstream file("/home/maxi/Crazyflie2-ros-gazebo-simulation/catkin_ws/"
-                     "src/CrazyS/rotors_control/src/nodes/att_contr.txt",
-                     std::ios::out | std::ios::app);
+  // Hardcoded file path
+  std::string file_path =
+      "/home/user/catkin_ws/src/CrazyS/rotors_control/src/nodes/att_contr.txt";
 
+  // Open the file in append mode
+  std::ofstream file(file_path, std::ios::out | std::ios::app);
+  if (!file.is_open()) {
+    std::cerr << "Unable to open file at: " << file_path << std::endl;
+    return;
+  }
+
+  // Get the current system time
   time_t timestamp = std::time(nullptr);
   std::string timestamp_str = std::ctime(&timestamp);
-  timestamp_str.pop_back(); // Remove the newline character
+  timestamp_str.pop_back(); // Remove the newline character from the timestamp
 
-  if (file.is_open()) {
-    file << "AttitudeControllerNode published rotorVelocities at "
-         << timestamp_str << "\n";
-    file << "Thrust x: " << thrust << "\n";
-    file << "Theta: " << theta_command << "\n";
-    file << "phi: " << phi_command << "\n";
+  // Get the ROS time
+  ros::Time ros_time = ros::Time::now();
+  std::string ros_time_str =
+      std::to_string(ros_time.sec) + "." + std::to_string(ros_time.nsec);
 
-    file.close();
-  } else {
-    std::cerr << "Unable to open file" << std::endl;
-  }
+  // Get the Gazebo time (if available)
+  std::string gazebo_time_str = std::to_string(gazebo_time_.sec) + "." +
+                                std::to_string(gazebo_time_.nsec);
+
+  // Write data to the file
+  file << "AttitudeControllerNode published rotorVelocities at "
+       << timestamp_str << " (System Time), ROS Time: " << ros_time_str
+       << ", Gazebo Time: " << gazebo_time_str << "\n";
+  file << "Thrust x: " << thrust << "\n";
+  file << "Theta: " << theta_command << "\n";
+  file << "phi: " << phi_command << "\n";
+
+  file.close(); // Close the file
 }
 
 void AttitudeControllerNode::UpdateController() {
@@ -285,6 +325,8 @@ void AttitudeControllerNode::UpdateController() {
 
     actuator_msg->header.stamp = ros::Time::now();
     motor_velocity_reference_pub_.publish(actuator_msg);
+    writeToFile(attitude_controller_.control_t_.thrust, theta_command,
+                phi_command);
 
     // ROS_INFO("PWM: [%f, %f, %f, %f]", PWM_1, PWM_2, PWM_3, PWM_4);
     // double r = (9.81 * 0.027) / (PWM_1 + PWM_2 + PWM_3 + PWM_4);
@@ -292,8 +334,15 @@ void AttitudeControllerNode::UpdateController() {
 
     // This can be used to double check the frequency and see how many msg's are
     // written to file per second.
-    // writeToFile(attitude_controller_.control_t_.thrust, theta_command,
-    // phi_command);
+    // ROS_INFO("Writing data to file...");
+
+    // write motorvelocities to file
+    // plot of motor velocities over ros time, vs over normal time
+    // at the end try to find gazebo time
+
+    // investigate bridge:
+
+
   }
 }
 

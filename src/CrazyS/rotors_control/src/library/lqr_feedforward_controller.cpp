@@ -99,7 +99,6 @@ LQRFeedforwardController::LQRFeedforwardController()
   state_.attitudeQuaternion.z = 0; // Quaternion z
   state_.attitudeQuaternion.w = 0; // Quaternion w
 
-  // Initialize the K matrix
   K_ << 3.34346154e-20, 9.82008020e-20, 5.62063822e-20, 1.22657644e-19,
       -1.88597448e-02, -6.58666618e-03, 8.69525627e-21, 1.00150277e-19,
       -9.88396508e-21, -6.82907040e-20, 9.07692670e-20, 7.19431089e-20,
@@ -185,25 +184,14 @@ Eigen::Vector4d LQRFeedforwardController::UpdateControllerWithLQR() {
       command_trajectory_.angular_velocity_W[2],      // \dot{\psi}
       desired_yaw;                                    // \psi
 
-  //   ROS_INFO_THROTTLE(1, "LQR current_state: [x: %.3f, y: %.3f, z: %.3f]",
-  //                     current_state(1), current_state(3), current_state(5));
-  //   ROS_INFO_THROTTLE(1, "LQR desired_state: [x: %.3f, y: %.3f, z: %.3f]",
-  //                     desired_state(1), desired_state(3), desired_state(5));
-
   error = current_state - desired_state;
-  // Print the error vector with throttling (e.g., every 3 seconds)
-  ROS_INFO_STREAM_THROTTLE(1, "Error: ["
-                                  << "x: " << error(1) << ", "
-                                  << "y: " << error(3) << ", "
-                                  << "z: " << error(5) << "]");
 
   Eigen::Vector4d control_input = -K_ * error;
 
-  ROS_INFO_STREAM_THROTTLE(
-      1, "Control: [" << control_input(0) << ", " << control_input(1) << ", "
-                      << control_input(2) << ", " << control_input(3) << "]");
+  Eigen::Vector4d control_input_scaled =
+      control_input * 2918 * 11.5; //* (6905.1912 * 4);
 
-  return control_input;
+  return control_input_scaled;
 }
 
 void LQRFeedforwardController::SetTrajectoryPoint(
@@ -353,23 +341,23 @@ void LQRFeedforwardController::ControlMixer(double thrust, double delta_phi,
   assert(PWM_3);
   assert(PWM_4);
 
-  //   control_t_.thrust = thrust;
+  control_t_.thrust = thrust;
 
-  //   *PWM_1 = thrust - delta_theta - delta_phi - delta_psi;
-  //   *PWM_2 = thrust + (delta_theta / 2) - (delta_phi / 2) + delta_psi;
-  //   *PWM_3 = thrust + (delta_theta / 2) + (delta_phi / 2) - delta_psi;
-  //   *PWM_4 = thrust - (delta_theta / 2) + (delta_phi / 2) + delta_psi;
+  *PWM_1 = thrust - delta_theta - delta_phi - delta_psi;
+  *PWM_2 = thrust + (delta_theta / 2) - (delta_phi / 2) + delta_psi;
+  *PWM_3 = thrust + (delta_theta / 2) + (delta_phi / 2) - delta_psi;
+  *PWM_4 = thrust - (delta_theta / 2) + (delta_phi / 2) + delta_psi;
   Eigen::Vector4d control_inputs;
 
   control_inputs << thrust, delta_theta, delta_phi, delta_psi;
   Eigen::Vector4d PWM = M_inv * control_inputs;
-    
-  //Is this line necessary?  
-  control_t_.thrust = thrust;
-  *PWM_1 = PWM(0);
-  *PWM_2 = PWM(1);
-  *PWM_3 = PWM(2);
-  *PWM_4 = PWM(3);
+
+  // Is this line necessary?
+  //   control_t_.thrust = thrust;
+  //   *PWM_1 = PWM(0);
+  //   *PWM_2 = PWM(1);
+  //   *PWM_3 = PWM(2);
+  //   *PWM_4 = PWM(3);
 
   ROS_INFO_THROTTLE(1,
                     "Omega: %f, Delta_theta: %f, Delta_phi: %f, delta_psi: %f",
